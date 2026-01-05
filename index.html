@@ -478,6 +478,12 @@
                             <input type="number" id="metrażPodany" name="metrażPodany" step="0.1">
                         </div>
                     </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="kosztZaMetr">Koszt za m² (PLN)</label>
+                            <input type="text" id="kosztZaMetr" name="kosztZaMetr" readonly style="background:#f5f5f5;">
+                        </div>
+                    </div>
 
                     <div class="form-row">
                         <div class="form-group">
@@ -1489,26 +1495,29 @@
             progressFill.style.width = '0%';
             successMessage.classList.remove('show');
             checkFormCleanliness();
+            updateKosztZaMetr();
         }
     });
 
-    // Obsługa zmian w formularzu
-    form.addEventListener('change', () => {
-        updateProgress();
-        saveFormData();
-        checkFormCleanliness();
-    });
-
-    form.addEventListener('input', () => {
-        updateProgress();
-        saveFormData();
-        checkFormCleanliness();
-    });
+    // Automatyczne liczenie kosztu za metr kwadratowy
+    function updateKosztZaMetr() {
+        const cena = parseFloat(document.getElementById('cena').value.replace(',', '.'));
+        const metraz = parseFloat(document.getElementById('metrażPodany').value.replace(',', '.'));
+        const kosztInput = document.getElementById('kosztZaMetr');
+        if (!isNaN(cena) && !isNaN(metraz) && metraz > 0) {
+            kosztInput.value = Math.round((cena / metraz) * 100) / 100;
+        } else {
+            kosztInput.value = '';
+        }
+    }
+    document.getElementById('cena').addEventListener('input', updateKosztZaMetr);
+    document.getElementById('metrażPodany').addEventListener('input', updateKosztZaMetr);
 
     // Załaduj dane przy starcie
     window.addEventListener('load', () => {
         loadFormData();
         checkFormCleanliness();
+        updateKosztZaMetr();
     });
 
     // Aktualizuj pasek postępu na starcie
@@ -1582,7 +1591,7 @@
             saveFormData();
             successMessage.classList.add('show');
             checkFormCleanliness();
-
+            updateKosztZaMetr();
         };
         reader.readAsText(file);
     });
