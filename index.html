@@ -1514,6 +1514,15 @@
         }
     });
 
+    // Dodaj automatyczny zapis po każdej zmianie w polach formularza
+    form.querySelectorAll('input, select, textarea').forEach(el => {
+        el.addEventListener('change', () => {
+            updateProgress();
+            saveFormData();
+            checkFormCleanliness();
+        });
+    });
+
     // Automatyczne liczenie kosztu za metr kwadratowy
     function updateKosztZaMetr() {
         const cena = parseFloat(document.getElementById('cena').value.replace(',', '.'));
