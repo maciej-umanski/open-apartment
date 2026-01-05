@@ -375,8 +375,8 @@
 <body>
     <div class="container">
         <header>
-            <h1>🏠 Property Inspector</h1>
-            <p>Professional property inspection checklist with automatic data export</p>
+            <h1>🏠 Open Apartment</h1>
+            <p>Simple property inspection checklist</p>
         </header>
 
         <div class="form-content">
@@ -385,13 +385,13 @@
             </div>
 
             <div class="info-box success" id="successMessage">
-                ✓ Formularz został wypełniony! Kliknij "Pobierz JSON" aby pobrać dane.
+                ✓ Formularz został wypełniony danymi z pliku JSON!
             </div>
 
-            <div style="margin-bottom: 20px;">
+            <div id="jsonLoaderContainer" style="margin-bottom: 20px;">
                 <label for="jsonLoader">Załaduj dane z pliku JSON:</label>
                 <input type="file" id="jsonLoader" accept="application/json">
-                <button type="button" id="loadJsonBtn">Załaduj JSON</button>
+                <button type="button" class="btn-primary" id="loadJsonBtn">Załaduj JSON</button>
             </div>
 
             <form id="ogledzinyForm">
@@ -413,6 +413,11 @@
                     <div class="form-group form-row full">
                         <label for="adres">Adres mieszkania</label>
                         <input type="text" id="adres" name="adres" placeholder="ul. Przykładowa 1, 00-000 Warszawa">
+                    </div>
+
+                    <div class="form-group form-row full">
+                        <label for="linkOferty">Link do oferty</label>
+                        <input type="text" id="linkOferty" name="linkOferty" placeholder="Wklej tutaj link do oferty online">
                     </div>
 
                     <div class="form-row">
@@ -513,6 +518,11 @@
                     <div class="subsection-title">Okna</div>
 
                     <div class="form-group form-row full">
+                        <label for="ekspozycjaOkien">Ekspozycja okien</label>
+                        <input type="text" id="ekspozycjaOkien" name="ekspozycjaOkien" placeholder="np. wschód, zachód, południe">
+                    </div>
+
+                    <div class="form-group form-row full">
                         <label>Typ okien</label>
                         <div class="checkbox-group">
                             <div class="checkbox-item">
@@ -554,6 +564,39 @@
                             <option value="">Wybierz...</option>
                             <option value="Szczelne">Szczelne</option>
                             <option value="Nieszczelne">Nieszczelne</option>
+                        </select>
+                    </div>
+
+                    <div class="subsection-title">Balkon/Taras</div>
+
+                    <div class="form-group form-row full">
+                        <label for="stanBalkonu">Stan balkonu/tarasu</label>
+                        <select id="stanBalkonu" name="stanBalkonu">
+                            <option value="">Wybierz...</option>
+                            <option value="Brak">Brak</option>
+                            <option value="Dobry">Dobry</option>
+                            <option value="Do remontu">Do remontu</option>
+                        </select>
+                    </div>
+
+                    <div class="subsection-title">Drzwi</div>
+
+                    <div class="form-group form-row full">
+                        <label for="rodzajDrzwi">Rodzaj drzwi wejściowych</label>
+                        <select id="rodzajDrzwi" name="rodzajDrzwi">
+                            <option value="">Wybierz...</option>
+                            <option value="Antywłamaniowe">Antywłamaniowe</option>
+                            <option value="Zwykłe">Zwykłe</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group form-row full">
+                        <label for="stanDrzwi">Stan drzwi wewnętrznych</label>
+                        <select id="stanDrzwi" name="stanDrzwi">
+                            <option value="">Wybierz...</option>
+                            <option value="Nowe">Nowe</option>
+                            <option value="Do odświeżenia">Do odświeżenia</option>
+                            <option value="Do wymiany">Do wymiany</option>
                         </select>
                     </div>
 
@@ -715,6 +758,16 @@
                     <div class="subsection-title">Woda i Gaz</div>
 
                     <div class="form-group form-row full">
+                        <label for="stanInstalacjiWodnej">Stan instalacji wodnej</label>
+                        <select id="stanInstalacjiWodnej" name="stanInstalacjiWodnej">
+                            <option value="">Wybierz...</option>
+                            <option value="Nowa">Nowa</option>
+                            <option value="Częściowo wymieniona">Częściowo wymieniona</option>
+                            <option value="Stara">Stara</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group form-row full">
                         <label for="typRurWody">Typ rur wodnych</label>
                         <select id="typRurWody" name="typRurWody">
                             <option value="">Wybierz...</option>
@@ -731,6 +784,16 @@
                             <option value="">Wybierz...</option>
                             <option value="Dostateczne">Dostateczne</option>
                             <option value="Słabe">Słabe</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group form-row full">
+                        <label for="stanInstalacjiGazowej">Stan instalacji gazowej</label>
+                        <select id="stanInstalacjiGazowej" name="stanInstalacjiGazowej">
+                            <option value="">Wybierz...</option>
+                            <option value="Nowa">Nowa</option>
+                            <option value="Stara">Stara</option>
+                            <option value="Brak">Brak</option>
                         </select>
                     </div>
 
@@ -811,10 +874,20 @@
                         </select>
                     </div>
 
+                    <div class="form-group form-row full">
+                        <label for="stanDachu">Stan dachu</label>
+                        <select id="stanDachu" name="stanDachu">
+                            <option value="">Wybierz...</option>
+                            <option value="Nowy">Nowy</option>
+                            <option value="Po remoncie">Po remoncie</option>
+                            <option value="Wymaga remontu">Wymaga remontu</option>
+                        </select>
+                    </div>
+
                     <div class="subsection-title">Winda</div>
 
                     <div class="form-group form-row full">
-                        <label from="jestWinda">Czy jest winda?</label>
+                        <span>Czy jest winda?</span>
                         <div class="radio-group">
                             <div class="radio-item">
                                 <input type="radio" id="winda1" name="jestWinda" value="Tak">
@@ -860,7 +933,7 @@
                     <div class="subsection-title">Parking</div>
 
                     <div class="form-group form-row full">
-                        <label from="parking">Czy jest miejsce parkingowe?</label>
+                        <span>Czy jest miejsce parkingowe?</span>
                         <div class="radio-group">
                             <div class="radio-item">
                                 <input type="radio" id="park1" name="parking" value="Przypisane">
@@ -893,6 +966,11 @@
                             <label for="opłataWspólnota">Opłata wspólnoty (PLN/miesiąc)</label>
                             <input type="number" id="opłataWspólnota" name="opłataWspólnota">
                         </div>
+                    </div>
+
+                    <div class="form-group form-row full">
+                        <label for="dodatkoweUdogodnienia">Dodatkowe udogodnienia</label>
+                        <input type="text" id="dodatkoweUdogodnienia" name="dodatkoweUdogodnienia" placeholder="np. plac zabaw, ochrona, monitoring">
                     </div>
                 </div>
 
@@ -1124,6 +1202,27 @@
         const saveIndicator = document.getElementById('saveIndicator');
         const successMessage = document.getElementById('successMessage');
 
+        function checkFormCleanliness() {
+            const inputs = form.querySelectorAll('input, select, textarea');
+            let filledCount = 0;
+            inputs.forEach(input => {
+                if (input.type === 'checkbox' || input.type === 'radio') {
+                    if (input.checked) {
+                        filledCount++;
+                    }
+                } else if (input.value && input.value.trim() !== '') {
+                    filledCount++;
+                }
+            });
+
+            const jsonLoaderContainer = document.getElementById('jsonLoaderContainer');
+            if (filledCount === 0) {
+                jsonLoaderContainer.style.display = 'block';
+            } else {
+                jsonLoaderContainer.style.display = 'none';
+            }
+        }
+
         // Obsługa przycisków oceny
         document.querySelectorAll('.rating-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
@@ -1144,6 +1243,7 @@
                 
                 updateProgress();
                 saveFormData();
+                checkFormCleanliness();
             });
         });
 
@@ -1280,6 +1380,7 @@
                 localStorage.removeItem('ogledzinyFormData');
                 progressFill.style.width = '0%';
                 successMessage.classList.remove('show');
+                checkFormCleanliness();
             }
         });
 
@@ -1287,16 +1388,19 @@
         form.addEventListener('change', () => {
             updateProgress();
             saveFormData();
+            checkFormCleanliness();
         });
 
         form.addEventListener('input', () => {
             updateProgress();
             saveFormData();
+            checkFormCleanliness();
         });
 
         // Załaduj dane przy starcie
         window.addEventListener('load', () => {
             loadFormData();
+            checkFormCleanliness();
         });
 
         // Aktualizuj pasek postępu na starcie
@@ -1312,50 +1416,68 @@
             const file = fileInput.files[0];
             const reader = new FileReader();
             reader.onload = function(e) {
-                try {
-                    const data = JSON.parse(e.target.result);
-                    fillFormFromJson(data);
-                } catch (err) {
-                    alert('Błąd w pliku JSON!');
+                const data = JSON.parse(e.target.result);
+                const formData = data.formularz || data; // Handle both structures
+
+                function populateForm(obj, prefix = '') {
+                    for (const key in obj) {
+                        if (obj.hasOwnProperty(key)) {
+                            const newKey = prefix ? `${prefix}_${key}` : key;
+                            const value = obj[key];
+
+                            if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+                                populateForm(value, newKey);
+                            } else {
+                                const elements = document.getElementsByName(newKey);
+                                if (elements.length > 0) {
+                                    if (elements[0].type === 'radio') {
+                                        document.querySelector(`input[name="${newKey}"][value="${value}"]`).checked = true;
+                                    } else if (elements[0].type === 'checkbox') {
+                                        if (Array.isArray(value)) {
+                                            value.forEach(v => {
+                                                const el = document.querySelector(`input[name="${newKey}"][value="${v}"]`);
+                                                if (el) el.checked = true;
+                                            });
+                                        } else {
+                                            const el = document.querySelector(`input[name="${newKey}"][value="${value}"]`);
+                                            if (el) el.checked = true;
+                                        }
+                                    } else {
+                                        elements[0].value = value;
+                                    }
+                                } else {
+                                    const element = document.getElementById(newKey);
+                                    if (element) {
+                                        if (element.type === 'hidden' && element.name.startsWith('ocena')) {
+                                            element.value = value;
+                                            const ratingButtons = document.querySelectorAll(`[data-field="${element.id}"]`);
+                                            ratingButtons.forEach(btn => {
+                                                btn.classList.remove('active');
+                                                if (btn.dataset.value === value) {
+                                                    btn.classList.add('active');
+                                                }
+                                            });
+                                        } else {
+                                            element.value = value;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
+
+                form.reset();
+                document.querySelectorAll('.rating-btn').forEach(btn => btn.classList.remove('active'));
+                populateForm(formData);
+                updateProgress();
+                saveFormData();
+                successMessage.classList.add('show');
+                checkFormCleanliness();
+
             };
             reader.readAsText(file);
         });
-
-        function fillFormFromJson(data) {
-            const form = document.getElementById('ogledzinyForm');
-            Object.keys(data).forEach(key => {
-                const value = data[key];
-                // Obsługa input[type=text|number|date]
-                const input = form.querySelector(`[name="${key}"]`);
-                if (input) {
-                    if (input.type === 'checkbox' || input.type === 'radio') {
-                        // Zaznacz odpowiednie checkboxy/radia
-                        const elems = Array.isArray(value) ? value : [value];
-                        elems.forEach(v => {
-                            const elem = form.querySelector(`[name="${key}"][value="${v}"]`);
-                            if (elem) elem.checked = true;
-                        });
-                    } else {
-                        input.value = value;
-                    }
-                }
-            });
-
-            // Przywróć oceny
-            for (let i = 1; i <= 5; i++) {
-                const fields = ['ocenaStan', 'ocenaMetraż', 'ocenaOświetlenie', 'ocenaTransport', 'ocenaBezpieczeństwo', 'ocenaFinałowa'];
-                fields.forEach(field => {
-                    const hiddenInput = form.querySelector(`#${field}`);
-                    if (hiddenInput && hiddenInput.value) {
-                        const btn = form.querySelector(`[data-field="${field}"][data-value="${hiddenInput.value}"]`);
-                        if (btn) btn.classList.add('active');
-                    }
-                });
-            }
-
-            updateProgress();
-        }
     </script>
 </body>
 </html>
