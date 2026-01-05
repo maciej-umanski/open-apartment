@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Inspector - Formularz Oględzin</title>
+    <style>
+        :root {
+            --color-primary: #2180cd;
+            --color-primary-hover: #1a6aad;
+            --color-bg: #f5f5f5;
+            --color-surface: #ffffff;
+            --color-text: #333333;
+            --color-text-light: #666666;
+            --color-border: #e0e0e0;
+            --color-success: #4caf50;
+            --color-success-light: rgba(76, 175, 80, 0.1);
+            --color-error: #f44336;
+            --radius: 8px;
+            --spacing: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            padding: var(--spacing);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: var(--color-surface);
+            border-radius: var(--radius);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+            color: white;
+            padding: var(--spacing) calc(var(--spacing) * 1.5);
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: 14px;
+            opacity: 0.95;
+            margin: 0;
+        }
+
+        .form-content {
+            padding: calc(var(--spacing) * 1.5);
+        }
+
+        .section {
+            margin-bottom: calc(var(--spacing) * 2);
+            padding-bottom: calc(var(--spacing) * 1.5);
+            border-bottom: 2px solid var(--color-bg);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing);
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 24px;
+            background-color: var(--color-primary);
+            margin-right: 12px;
+            border-radius: 2px;
+        }
+
+        .subsection-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--color-text);
+            margin-top: calc(var(--spacing) * 1.5);
+            margin-bottom: var(--spacing);
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing);
+        }
+
+        .form-row.full {
+            grid-template-columns: 1fr;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: var(--color-text);
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        input[type="date"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(33, 128, 205, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+            font-family: inherit;
+        }
+
+        .checkbox-group,
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .checkbox-item,
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        input[type="checkbox"],
+        input[type="radio"] {
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--color-primary);
+        }
+
+        .checkbox-label,
+        .radio-label {
+            cursor: pointer;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .rating-group {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .rating-btn {
+            padding: 10px;
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius);
+            background-color: white;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s;
+            color: var(--color-text-light);
+        }
+
+        .rating-btn:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        .rating-btn.active {
+            background-color: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+
+        .button-group {
+            display: flex;
+            gap: var(--spacing);
+            margin-top: calc(var(--spacing) * 2);
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--color-success);
+            color: white;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .btn-primary:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            border: 2px solid var(--color-border);
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .btn-secondary:hover {
+            background-color: white;
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        .info-box {
+            background-color: var(--color-success-light);
+            border-left: 4px solid var(--color-success);
+            padding: var(--spacing);
+            border-radius: var(--radius);
+            margin-bottom: var(--spacing);
+            font-size: 14px;
+            color: #2e7d32;
+        }
+
+        .info-box.success {
+            display: none;
+            background-color: var(--color-success-light);
+            border-left-color: var(--color-success);
+            color: #2e7d32;
+        }
+
+        .info-box.success.show {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 22px;
+            }
+
+            .form-content {
+                padding: var(--spacing);
+            }
+
+            .section-title {
+                font-size: 18px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+
+        .progress-bar {
+            background-color: var(--color-bg);
+            height: 4px;
+            margin-bottom: var(--spacing);
+        }
+
+        .progress-bar-fill {
+            background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-success) 100%);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .floating-action {
+            position: fixed;
+            bottom: var(--spacing);
+            right: var(--spacing);
+            background-color: var(--color-success);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            font-weight: 600;
+            display: none;
+            animation: popIn 0.3s ease-out;
+            z-index: 100;
+        }
+
+        .floating-action.show {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @keyframes popIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏠 Property Inspector</h1>
+            <p>Professional property inspection checklist with automatic data export</p>
+        </header>
+
+        <div class="form-content">
+            <div class="progress-bar">
+                <div class="progress-bar-fill" id="progressFill"></div>
+            </div>
+
+            <div class="info-box success" id="successMessage">
+                ✓ Formularz został wypełniony! Kliknij "Pobierz JSON" aby pobrać dane.
+            </div>
+
+            <form id="ogledzinyForm">
+                <!-- SEKCJA 1: DANE OGÓLNE -->
+                <div class="section">
+                    <div class="section-title">Informacje Podstawowe</div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="dataOgledzin">Data oględzin</label>
+                            <input type="date" id="dataOgledzin" name="dataOgledzin">
+                        </div>
+                        <div class="form-group">
+                            <label for="godzina">Godzina</label>
+                            <input type="text" id="godzina" name="godzina" placeholder="np. 10:30">
+                        </div>
+                    </div>
+
+                    <div class="form-group form-row full">
+                        <label for="adres">Adres mieszkania</label>
+                        <input type="text" id="adres" name="adres" placeholder="ul. Przykładowa 1, 00-000 Warszawa">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="pietro">Piętro</label>
+                            <input type="number" id="pietro" name="pietro">
+                        </div>
+                        <div class="form-group">
+                            <label for="nrMieszkan">Numer mieszkania</label>
+                            <input type="text" id="nrMieszkan" name="nrMieszkan">
+                        </div>
+                    </div>
+
+                    <div class="subsection-title">Dane Nieruchomości</div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cena">Cena wywoławcza (PLN)</label>
+                            <input type="number" id="cena" name="cena">
+                        </div>
+                        <div class="form-group">
+                            <label for="metrażPodany">Metraż podany (m²)</label>
+                            <input type="number" id="metrażPodany" name="metrażPodany" step="0.1">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="metrażRzeczywisty">Metraż rzeczywisty zmierzony (m²)</label>
+                            <input type="number" id="metrażRzeczywisty" name="metrażRzeczywisty" step="0.1">
+                        </div>
+                        <div class="form-group">
+                            <label for="liczbaRoomow">Liczba pokoi</label>
+                            <input type="number" id="liczbaRoomow" name="liczbaRoomow">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="wiekBudynku">Wiek budynku (lata)</label>
+                            <input type="number" id="wiekBudynku" name="wiekBudynku">
+                        </div>
+                        <div class="form-group">
+                            <label for="rokRemontu">Rok ostatniego remontu</label>
+                            <input type="number" id="rokRemontu" name="rokRemontu">
+                        </div>
+                    </div>
+
+                    <div class="form-group form-row full">
+                        <label>Typ własności</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="wlasn1" name="typWlasnosci" value="Własność">
+                                <label for="wlasn1" class="radio-label">Własność</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="wlasn2" name="typWlasnosci" value="Spółdzielcze własnościowe">
+                                <label for="wlasn2" class="radio-label">Spółdzielcze własnościowe</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="wlasn3" name="typWlasnosci" value="Inne">
+                                <label for="wlasn3" class="radio-label">Inne</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SEKCJA 2: STAN MIESZKANIA -->
+                <div class="section">
+                    <div class="section-title">Stan Mieszkania</div>
+
+                    <div class="form-group form-row full">
+                        <label>Ocena wizualna całości mieszkania</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="stan1" name="stanOgolny" value="Doskonały">
+                                <label for="stan1" class="radio-label">Doskonały</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="stan2" name="stanOgolny" value="Bardzo dobry">
+                                <label for="stan2" class="radio-label">Bardzo dobry</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="stan3" name="stanOgolny" value="Dobry">
+                                <label for="stan3" class="radio-label">Dobry</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="stan4" name="stanOgolny" value="Zadowalający">
+                                <label for="stan4" class="radio-label">Zadowalający</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="stan5" name="stanOgolny" value="Wymaga remontu">
+                                <label for="stan5" class="radio-label">Wymaga remontu</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection-title">Okna</div>
+
+                    <div class="form-group form-row full">
+                        <label>Typ okien</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="okna1" name="typOkien" value="Drewniane">
+                                <label for="okna1" class="checkbox-label">Drewniane</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="okna2" name="typOkien" value="Plastikowe">
+                                <label for="okna2" class="checkbox-label">Plastikowe</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="okna3" name="typOkien" value="Aluminiowe">
+                                <label for="okna3" class="checkbox-label">Aluminiowe</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group form-row full">
+                        <label>Liczba komor okien</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="komory1" name="komorOkien" value="Jednokomorowe">
+                                <label for="komory1" class="checkbox-label">Jednokomorowe</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="komory2" name="komorOkien" value="Dwukomorowe">
+                                <label for="komory2" class="checkbox-label">Dwukomorowe</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="komory3" name="komorOkien" value="Trzykomorowe">
+                                <label for="komory3" class="checkbox-label">Trzykomorowe</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group form-row full">
+                        <label for="stanSzczelin">Stan szczelin okien</label>
+                        <select id="stanSzczelin" name="stanSzczelin">
+                            <option value="">Wybierz...</option>
+                            <option value="Szczelne">Szczelne</option>
+                            <option value="Nieszczelne">Nieszczelne</option>
+                        </select>
+                    </div>
+
+                    <div class="subsection-title">Ściany i Sufity</div>
+
+                    <div class="form-group form-row full">
+                        <label for="stanTynkow">Stan tynków</label>
+                        <select id="stanTynkow" name="stanTynkow">
+                            <option value="">Wybierz...</option>
+                            <option value="Bez uszkodzeń">Bez uszkodzeń</option>
+                            <option value="Nieznaczne pęknięcia">Nieznaczne pęknięcia</option>
+                            <option value="Znaczne pęknięcia">Znaczne pęknięcia</option>
+                            <option value="Wilgoć/pleśń">Wilgoć/pleśń</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group form-row full">
+                        <label for="wysokoscPomieszczen">Wysokość pomieszczeń (cm)</label>
+                        <input type="number" id="wysokoscPomieszczen" name="wysokoscPomieszczen">
+                    </div>
+
+                    <div class="subsection-title">Podłogi</div>
+
+                    <div class="form-row">
+                        <div class="form-group form-row full">
+                            <label for="podlogaSalon">Podłoga - Salon/Pokój dzienny</label>
+                            <input type="text" id="podlogaSalon" name="podlogaSalon" placeholder="np. drewno, laminat, ceramika">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group form-row full">
+                            <label for="podlogaKuchnia">Podłoga - Kuchnia</label>
+                            <input type="text" id="podlogaKuchnia" name="podlogaKuchnia" placeholder="np. drewno, laminat, ceramika">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group form-row full">
+                            <label for="podlogaSypialnia">Podłoga - Sypialnia</label>
+                            <input type="text" id="podlogaSypialnia" name="podlogaSypialnia" placeholder="np. drewno, laminat, ceramika">
+                        </div>
+                    </div>
+
+                    <div class="form-group form-row full">
+                        <label for="stanPodlog">Stan podłóg</label>
+                        <select id="stanPodlog" name="stanPodlog">
+                            <option value="">Wybierz...</option>
+                            <option value="Bez uszkodzeń">Bez uszkodzeń</option>
+                            <option value="Nieznaczne uszkodzenia">Nieznaczne uszkodzenia</option>
+                            <option value="Znaczne uszkodzenia">Znaczne uszkodzenia</option>
+                        </select>
+                    </div>
+
+                    <div class="subsection-title">Kuchnia</div>
+
+                    <div class="form-group form-row full">
+                        <label>Typ kuchni</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="kuch1" name="typKuchni" value="Zabudowana">
+                                <label for="kuch1" class="radio-label">Zabudowana</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="kuch2" name="typKuchni" value="Oddzielna">
+                                <label for="kuch2" class="radio-label">Oddzielna (nieotwarta)</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="kuch3" name="typKuchni" value="Otwarta">
+                                <label for="kuch3" class="radio-label">Otwarta (połączona)</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="kuch4" name="typKuchni" value="Brak">
+                                <label for="kuch4" class="radio-label">Brak zabudowanej</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group form-row full">
+                        <label for="stanUrządzen">Stan urządzeń kuchni</label>
+                        <select id="stanUrządzen" name="stanUrządzen">
+                            <option value="">Wybierz...</option>
+                            <option value="Sprawne">Sprawne</option>
+                            <option value="Do remontu">Do remontu</option>
+                            <option value="Do wymiany">Do wymiany</option>
+                        </select>
+                    </div>
+
+                    <div class="subsection-title">Łazienka i Toaleta</div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="liczbaLazienek">Liczba łazienek</label>
+                            <input type="number" id="liczbaLazienek" name="liczbaLazienek">
+                        </div>
+                        <div class="form-group">
+                            <label for="liczbaToalet">Liczba oddzielnych toalet</label>
+                            <input type="number" id="liczbaToalet" name="liczbaToalet">
+                        </div>
+                    </div>
+
+                    <div class="form-group form-row full">
+                        <label from="stanFug">Stan fug</label>
+                        <select id="stanFug" name="stanFug">
+                            <option value="">Wybierz...</option>
+                            <option value="W dobrym stanie">W dobrym stanie</option>
+                            <option value="Zgrzybiałe">Zgrzybiałe</option>
+                            <option value="Wymagają czyszczenia">Wymagają czyszczenia</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- SEKCJA 3: INSTALACJE -->
+                <div class="section">
+                    <div class="section-title">Instalacje i Media</div>
+
+                    <div class="subsection-title">Elektryka</div>
+
+                    <div class="form-group form-row full">
+                        <label for="rodzajPrzewodów">Rodzaj przewodów</label>
+                        <select id="rodzajPrzewodów" name="rodzajPrzewodów">
+                            <option value="">Wybierz...</option>
+                            <option value="Miedziane">Miedziane</option>
+                            <option value="Aluminiowe">Aluminiowe</option>
+                            <option value="Mieszane">Mieszane</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="liczbaGniazdek">Liczba gniazdek (razem)</label>
+                            <input type="number" id="liczbaGniazdek" name="liczbaGniazdek">
+                        </div>
+                        <div class="form-group">
+                            <label for="średniaMoc">Średnia moc dostępna (A)</label>
+                            <input type="number" id="średniaMoc" name="średniaMoc">
+                        </div>
+                    </div>
+
+                    <div class="subsection-title">Ogrzewanie</div>
+
+                    <div class="form-group form-row full">
+                        <label for="rodzajOgrzewania">Rodzaj ogrzewania</label>
+                        <select id="rodzajOgrzewania" name="rodzajOgrzewania">
+                            <option value="">Wybierz...</option>
+                            <option value="Centralne z pieca">Centralne z pieca</option>
+                            <option value="Centralne z gazu">Centralne z gazu</option>
+                            <option value="Pompa ciepła">Pompa ciepła</option>
+                            <option value="Klimatyzacja">Klimatyzacja</option>
+                            <option value="Piece kaflowe">Piece kaflowe</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group form-row">
+                        <label for="oplataBieżąca">Opłata za ogrzewanie (PLN/miesiąc)</label>
+                        <input type="number" id="oplataBieżąca" name="oplataBieżąca">
+                    </div>
+
+                    <div class="subsection-title">Woda i Gaz</div>
+
+                    <div class="form-group form-row full">
+                        <label for="typRurWody">Typ rur wodnych</label>
+                        <select id="typRurWody" name="typRurWody">
+                            <option value="">Wybierz...</option>
+                            <option value="Miedziane">Miedziane</option>
+                            <option value="Galwanizowane">Galwanizowane</option>
+                            <option value="Plastikowe">Plastikowe (PVC/PPR)</option>
+                            <option value="Mieszane">Mieszane</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group form-row">
+                        <label for="ciśnienieWody">Ciśnienie wody</label>
+                        <select id="ciśnienieWody" name="ciśnienieWody">
+                            <option value="">Wybierz...</option>
+                            <option value="Dostateczne">Dostateczne</option>
+                            <option value="Słabe">Słabe</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group form-row full">
+                        <label for="jestGaz">Czy jest gaz?</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="gaz1" name="jestGaz" value="Tak">
+                                <label for="gaz1" class="radio-label">Tak</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="gaz2" name="jestGaz" value="Nie">
+                                <label for="gaz2" class="radio-label">Nie</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection-title">Wentylacja</div>
+
+                    <div class="form-group form-row full">
+                        <label for="systemWentylacji">System wentylacji</label>
+                        <select id="systemWentylacji" name="systemWentylacji">
+                            <option value="">Wybierz...</option>
+                            <option value="Naturalna">Naturalna</option>
+                            <option value="Mechaniczna">Mechaniczna</option>
+                            <option value="Mieszana">Mieszana</option>
+                            <option value="Klimatyzacja">Klimatyzacja</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group form-row full">
+                        <label for="problemyWilgoć">Problemy z wilgocią/pleśnią</label>
+                        <select id="problemyWilgoć" name="problemyWilgoć">
+                            <option value="">Wybierz...</option>
+                            <option value="Brak">Brak</option>
+                            <option value="Czasami">Czasami</option>
+                            <option value="Regularnie">Regularnie</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- SEKCJA 4: INFRASTRUKTURA BUDYNKU -->
+                <div class="section">
+                    <div class="section-title">Infrastruktura Budynku</div>
+
+                    <div class="subsection-title">Typ Budynku</div>
+
+                    <div class="form-group form-row full">
+                        <label for="materialBudynku">Materiał budynku</label>
+                        <select id="materialBudynku" name="materialBudynku">
+                            <option value="">Wybierz...</option>
+                            <option value="Cegła">Cegła</option>
+                            <option value="Beton">Beton</option>
+                            <option value="Wielka płyta">Wielka płyta</option>
+                            <option value="Żelbeton">Żelbeton</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="liczbaPoziomów">Liczba pięter w budynku</label>
+                            <input type="number" id="liczbaPoziomów" name="liczbaPoziomów">
+                        </div>
+                        <div class="form-group">
+                            <label for="rokBudowy">Rok budowy</label>
+                            <input type="number" id="rokBudowy" name="rokBudowy">
+                        </div>
+                    </div>
+
+                    <div class="form-group form-row full">
+                        <label for="stanElewacji">Stan elewacji</label>
+                        <select id="stanElewacji" name="stanElewacji">
+                            <option value="">Wybierz...</option>
+                            <option value="Doskonały">Doskonały</option>
+                            <option value="Dobry">Dobry</option>
+                            <option value="Wymaga odświeżenia">Wymaga odświeżenia</option>
+                            <option value="Wymaga remontu">Wymaga remontu</option>
+                        </select>
+                    </div>
+
+                    <div class="subsection-title">Winda</div>
+
+                    <div class="form-group form-row full">
+                        <label for="jestWinda">Czy jest winda?</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="winda1" name="jestWinda" value="Tak">
+                                <label for="winda1" class="radio-label">Tak</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="winda2" name="jestWinda" value="Nie">
+                                <label for="winda2" class="radio-label">Nie</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="liczbaWind">Liczba wind</label>
+                            <input type="number" id="liczbaWind" name="liczbaWind">
+                        </div>
+                        <div class="form-group">
+                            <label for="stanWindy">Stan techniczny windy</label>
+                            <select id="stanWindy" name="stanWindy">
+                                <option value="">Wybierz...</option>
+                                <option value="Nowy/Nowoczesny">Nowy/Nowoczesny</option>
+                                <option value="Dobry">Dobry</option>
+                                <option value="Wymaga przeglądu">Wymaga przeglądu</option>
+                                <option value="Do wymiany">Do wymiany</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="subsection-title">Klatka Schodowa</div>
+
+                    <div class="form-group form-row full">
+                        <label for="stanKlatki">Stan ogólny klatki schodowej</label>
+                        <select id="stanKlatki" name="stanKlatki">
+                            <option value="">Wybierz...</option>
+                            <option value="Bardzo czysty">Bardzo czysty</option>
+                            <option value="Czysty">Czysty</option>
+                            <option value="Brudny">Brudny</option>
+                            <option value="Zaniedbany">Zaniedbany</option>
+                        </select>
+                    </div>
+
+                    <div class="subsection-title">Parking</div>
+
+                    <div class="form-group form-row full">
+                        <label for="parking">Czy jest miejsce parkingowe?</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="park1" name="parking" value="Przypisane">
+                                <label for="park1" class="radio-label">Tak (przypisane)</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="park2" name="parking" value="Dowolne">
+                                <label for="park2" class="radio-label">Tak (dowolne)</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="park3" name="parking" value="Nie">
+                                <label for="park3" class="radio-label">Nie</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group form-row">
+                        <label for="kosztParkingu">Koszt parkingu (PLN/miesiąc)</label>
+                        <input type="number" id="kosztParkingu" name="kosztParkingu">
+                    </div>
+
+                    <div class="subsection-title">Wspólnota Mieszkaniowa</div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="liczbaWzystkichMieszkań">Liczba mieszkań w budynku</label>
+                            <input type="number" id="liczbaWzystkichMieszkań" name="liczbaWzystkichMieszkań">
+                        </div>
+                        <div class="form-group">
+                            <label for="opłataWspólnota">Opłata wspólnoty (PLN/miesiąc)</label>
+                            <input type="number" id="opłataWspólnota" name="opłataWspólnota">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SEKCJA 5: OKOLICA -->
+                <div class="section">
+                    <div class="section-title">Okolica Mieszkania</div>
+
+                    <div class="subsection-title">Transport</div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="distPrzystanekAuto">Odległość do przystanku autobusowego (m)</label>
+                            <input type="number" id="distPrzystanekAuto" name="distPrzystanekAuto">
+                        </div>
+                        <div class="form-group">
+                            <label for="distMetro">Odległość do metra (m)</label>
+                            <input type="number" id="distMetro" name="distMetro">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="czas dojazdu Maciej auto">(Maciej) Czas dojazdu do pracy (min)</label>
+                            <input type="number" id="czas dojazdu Maciej auto" name="czas dojazdu Maciej auto">
+                        </div>
+                        <div class="form-group">
+                            <label for="czas dojazdu Maja auto">(Maja) Czas dojazdu do pracy (min)</label>
+                            <input type="number" id="czas dojazdu Maja auto" name="czas dojazdu Maja auto">
+                        </div>
+                    </div>
+
+                    <div class="subsection-title">Infrastruktura Handlowa</div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="distSupermarket">Odległość do supermarketu (m)</label>
+                            <input type="number" id="distSupermarket" name="distSupermarket">
+                        </div>
+                        <div class="form-group">
+                            <label for="distApteka">Odległość do apteki (m)</label>
+                            <input type="number" id="distApteka" name="distApteka">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="distPark">Odległość do parku (m)</label>
+                            <input type="number" id="distPark" name="distPark">
+                        </div>
+                        <div class="form-group">
+                            <label for="distSzkoła">Odległość do szkoły (m)</label>
+                            <input type="number" id="distSzkoła" name="distSzkoła">
+                        </div>
+                    </div>
+
+                    <div class="subsection-title">Bezpieczeństwo i Hałas</div>
+
+                    <div class="form-group form-row full">
+                        <label for="bezpieczeństwo">Wrażenie o bezpieczeństwie okolicy</label>
+                        <select id="bezpieczeństwo" name="bezpieczeństwo">
+                            <option value="">Wybierz...</option>
+                            <option value="Bardzo bezpieczna">Bardzo bezpieczna</option>
+                            <option value="Bezpieczna">Bezpieczna</option>
+                            <option value="Średnio bezpieczna">Średnio bezpieczna</option>
+                            <option value="Niebezpieczna">Niebezpieczna</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group form-row full">
+                        <label for="hałasSzczegół">Hałas z ulicy</label>
+                        <select id="hałasSzczegół" name="hałasSzczegół">
+                            <option value="">Wybierz...</option>
+                            <option value="Żaden">Żaden</option>
+                            <option value="Nieznaczny">Nieznaczny</option>
+                            <option value="Widoczny">Widoczny</option>
+                            <option value="Znaczny">Znaczny</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group form-row full">
+                        <label for="zapachy">Zapachy niebezpieczne/nieprzyjemne</label>
+                        <select id="zapachy" name="zapachy">
+                            <option value="">Wybierz...</option>
+                            <option value="Brak">Brak</option>
+                            <option value="Tak">Tak</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- SEKCJA 6: OCENA FINALNA -->
+                <div class="section">
+                    <div class="section-title">Ocena i Wnioski</div>
+
+                    <div class="subsection-title">Oceny Mieszkania (1-5)</div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Stan ogólny mieszkania</label>
+                            <div class="rating-group">
+                                <button type="button" class="rating-btn" data-field="ocenaStan" data-value="1">1</button>
+                                <button type="button" class="rating-btn" data-field="ocenaStan" data-value="2">2</button>
+                                <button type="button" class="rating-btn" data-field="ocenaStan" data-value="3">3</button>
+                                <button type="button" class="rating-btn" data-field="ocenaStan" data-value="4">4</button>
+                                <button type="button" class="rating-btn" data-field="ocenaStan" data-value="5">5</button>
+                            </div>
+                            <input type="hidden" id="ocenaStan" name="ocenaStan">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Metraż i rozkład pomieszczeń</label>
+                            <div class="rating-group">
+                                <button type="button" class="rating-btn" data-field="ocenaMetraż" data-value="1">1</button>
+                                <button type="button" class="rating-btn" data-field="ocenaMetraż" data-value="2">2</button>
+                                <button type="button" class="rating-btn" data-field="ocenaMetraż" data-value="3">3</button>
+                                <button type="button" class="rating-btn" data-field="ocenaMetraż" data-value="4">4</button>
+                                <button type="button" class="rating-btn" data-field="ocenaMetraż" data-value="5">5</button>
+                            </div>
+                            <input type="hidden" id="ocenaMetraż" name="ocenaMetraż">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Oświetlenie naturalne</label>
+                            <div class="rating-group">
+                                <button type="button" class="rating-btn" data-field="ocenaOświetlenie" data-value="1">1</button>
+                                <button type="button" class="rating-btn" data-field="ocenaOświetlenie" data-value="2">2</button>
+                                <button type="button" class="rating-btn" data-field="ocenaOświetlenie" data-value="3">3</button>
+                                <button type="button" class="rating-btn" data-field="ocenaOświetlenie" data-value="4">4</button>
+                                <button type="button" class="rating-btn" data-field="ocenaOświetlenie" data-value="5">5</button>
+                            </div>
+                            <input type="hidden" id="ocenaOświetlenie" name="ocenaOświetlenie">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Transport publiczny</label>
+                            <div class="rating-group">
+                                <button type="button" class="rating-btn" data-field="ocenaTransport" data-value="1">1</button>
+                                <button type="button" class="rating-btn" data-field="ocenaTransport" data-value="2">2</button>
+                                <button type="button" class="rating-btn" data-field="ocenaTransport" data-value="3">3</button>
+                                <button type="button" class="rating-btn" data-field="ocenaTransport" data-value="4">4</button>
+                                <button type="button" class="rating-btn" data-field="ocenaTransport" data-value="5">5</button>
+                            </div>
+                            <input type="hidden" id="ocenaTransport" name="ocenaTransport">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Bezpieczeństwo okolicy</label>
+                            <div class="rating-group">
+                                <button type="button" class="rating-btn" data-field="ocenaBezpieczeństwo" data-value="1">1</button>
+                                <button type="button" class="rating-btn" data-field="ocenaBezpieczeństwo" data-value="2">2</button>
+                                <button type="button" class="rating-btn" data-field="ocenaBezpieczeństwo" data-value="3">3</button>
+                                <button type="button" class="rating-btn" data-field="ocenaBezpieczeństwo" data-value="4">4</button>
+                                <button type="button" class="rating-btn" data-field="ocenaBezpieczeństwo" data-value="5">5</button>
+                            </div>
+                            <input type="hidden" id="ocenaBezpieczeństwo" name="ocenaBezpieczeństwo">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>OCENA FINAŁOWA</label>
+                            <div class="rating-group">
+                                <button type="button" class="rating-btn" data-field="ocenaFinałowa" data-value="1">1</button>
+                                <button type="button" class="rating-btn" data-field="ocenaFinałowa" data-value="2">2</button>
+                                <button type="button" class="rating-btn" data-field="ocenaFinałowa" data-value="3">3</button>
+                                <button type="button" class="rating-btn" data-field="ocenaFinałowa" data-value="4">4</button>
+                                <button type="button" class="rating-btn" data-field="ocenaFinałowa" data-value="5">5</button>
+                            </div>
+                            <input type="hidden" id="ocenaFinałowa" name="ocenaFinałowa">
+                        </div>
+                    </div>
+
+                    <div class="subsection-title">Plusy i Minusy</div>
+
+                    <div class="form-group form-row full">
+                        <label for="plusy">Plusy tego mieszkania</label>
+                        <textarea id="plusy" name="plusy" placeholder="Wpisz plusy, każdy w nowej linii"></textarea>
+                    </div>
+
+                    <div class="form-group form-row full">
+                        <label for="minusy">Minusy tego mieszkania</label>
+                        <textarea id="minusy" name="minusy" placeholder="Wpisz minusy, każdy w nowej linii"></textarea>
+                    </div>
+
+                    <div class="form-group form-row full">
+                        <label for="pytania">Kwestie do wyjaśnienia</label>
+                        <textarea id="pytania" name="pytania" placeholder="Wpisz pytania do sprzedającego"></textarea>
+                    </div>
+
+                    <div class="form-group form-row full">
+                        <label for="uwagi">Uwagi ogólne</label>
+                        <textarea id="uwagi" name="uwagi" placeholder="Wpisz swoje ogólne wrażenia i obserwacje"></textarea>
+                    </div>
+
+                    <div class="form-group form-row full">
+                        <label for="decyzja">Czy to mieszkanie warte bliżej przeanalizować?</label>
+                        <select id="decyzja" name="decyzja">
+                            <option value="">Wybierz...</option>
+                            <option value="TAK - godne bliżej przeanalizować">TAK - godne bliżej przeanalizować, możliwy zakup</option>
+                            <option value="MOŻLIWE - wymaga zastanowienia">MOŻLIWE - ma szanse, ale wymaga zastanowienia lub dodatkowych informacji</option>
+                            <option value="NIE - nie spełnia oczekiwań">NIE - nie spełnia oczekiwań, dalsze zainteresowanie zbędne</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- GUZIKI AKCJI -->
+                <div class="button-group">
+                    <button type="button" class="btn-secondary" id="resetBtn">🔄 Wyczyść formularz</button>
+                    <button type="button" class="btn-primary" id="downloadBtn">⬇️ Pobierz JSON</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <button class="floating-action" id="saveIndicator" title="Formularz aktualizowany">💾 Formularz zapisany</button>
+
+    <script>
+        const form = document.getElementById('ogledzinyForm');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const progressFill = document.getElementById('progressFill');
+        const saveIndicator = document.getElementById('saveIndicator');
+        const successMessage = document.getElementById('successMessage');
+
+        // Obsługa przycisków oceny
+        document.querySelectorAll('.rating-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const fieldName = btn.dataset.field;
+                const value = btn.dataset.value;
+                
+                // Usuń klasę active z wszystkich przycisków dla tego pola
+                document.querySelectorAll(`[data-field="${fieldName}"]`).forEach(b => {
+                    b.classList.remove('active');
+                });
+                
+                // Dodaj klasę active do klikniętego przycisku
+                btn.classList.add('active');
+                
+                // Ustaw wartość w ukrytym polu input
+                document.getElementById(fieldName).value = value;
+                
+                updateProgress();
+                saveFormData();
+            });
+        });
+
+        // Pobranie danych z formularza
+        function getFormData() {
+            const formData = new FormData(form);
+            const data = {
+                timestamp: new Date().toISOString(),
+                formularz: {}
+            };
+
+            // Zbierz wszystkie dane
+            for (let [key, value] of formData.entries()) {
+                if (key.startsWith('typOkien') || key.startsWith('komorOkien')) {
+                    // Dla checkboxów - zbierz wszystkie wartości
+                    if (!data.formularz[key]) {
+                        data.formularz[key] = [];
+                    }
+                    data.formularz[key].push(value);
+                } else if (data.formularz[key]) {
+                    // Jeśli już istnieje, zamień na tablicę
+                    if (!Array.isArray(data.formularz[key])) {
+                        data.formularz[key] = [data.formularz[key]];
+                    }
+                    data.formularz[key].push(value);
+                } else {
+                    data.formularz[key] = value;
+                }
+            }
+
+            return data;
+        }
+
+        // Aktualizuj pasek postępu
+        function updateProgress() {
+            const inputs = form.querySelectorAll('input, select, textarea');
+            let filled = 0;
+
+            inputs.forEach(input => {
+                if (input.type === 'checkbox' || input.type === 'radio') {
+                    if (input.checked) filled++;
+                } else if (input.value && input.value.trim() !== '') {
+                    filled++;
+                }
+            });
+
+            const percentage = Math.round((filled / inputs.length) * 100);
+            progressFill.style.width = percentage + '%';
+
+            // Pokażł wiadomość o powodzeniu jeśli wypełnione powyżej 50%
+            if (percentage > 50) {
+                successMessage.classList.add('show');
+            }
+        }
+
+        // Zapisz dane w localStorage
+        function saveFormData() {
+            const data = getFormData();
+            localStorage.setItem('ogledzinyFormData', JSON.stringify(data));
+            
+            // Pokaż wskaźnik zapisania
+            saveIndicator.classList.add('show');
+            setTimeout(() => {
+                saveIndicator.classList.remove('show');
+            }, 2000);
+        }
+
+        // Załaduj dane z localStorage
+        function loadFormData() {
+            const saved = localStorage.getItem('ogledzinyFormData');
+            if (saved) {
+                try {
+                    const data = JSON.parse(saved);
+                    
+                    // Załaduj dane do formularza
+                    for (let [key, value] of Object.entries(data.formularz)) {
+                        const input = form.querySelector(`[name="${key}"]`);
+                        if (input) {
+                            if (input.type === 'checkbox' || input.type === 'radio') {
+                                if (Array.isArray(value)) {
+                                    value.forEach(v => {
+                                        const elem = form.querySelector(`[name="${key}"][value="${v}"]`);
+                                        if (elem) elem.checked = true;
+                                    });
+                                } else {
+                                    if (input.value === value) input.checked = true;
+                                }
+                            } else {
+                                input.value = value;
+                            }
+                        }
+                    }
+                    
+                    // Przywróć oceny
+                    for (let i = 1; i <= 5; i++) {
+                        const fields = ['ocenaStan', 'ocenaMetraż', 'ocenaOświetlenie', 'ocenaTransport', 'ocenaBezpieczeństwo', 'ocenaFinałowa'];
+                        fields.forEach(field => {
+                            const hiddenInput = form.querySelector(`#${field}`);
+                            if (hiddenInput && hiddenInput.value) {
+                                const btn = form.querySelector(`[data-field="${field}"][data-value="${hiddenInput.value}"]`);
+                                if (btn) btn.classList.add('active');
+                            }
+                        });
+                    }
+                    
+                    updateProgress();
+                } catch (e) {
+                    console.error('Błąd przy wczytywaniu danych:', e);
+                }
+            }
+        }
+
+        // Pobierz formularz jako JSON
+        downloadBtn.addEventListener('click', () => {
+            const data = getFormData();
+            const jsonString = JSON.stringify(data, null, 2);
+            const blob = new Blob([jsonString], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `ogledziny_${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        });
+
+        // Wyczyść formularz
+        resetBtn.addEventListener('click', () => {
+            if (confirm('Czy na pewno chcesz wyczyścić cały formularz?')) {
+                form.reset();
+                document.querySelectorAll('.rating-btn').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('input[type="hidden"]').forEach(input => input.value = '');
+                localStorage.removeItem('ogledzinyFormData');
+                progressFill.style.width = '0%';
+                successMessage.classList.remove('show');
+            }
+        });
+
+        // Obsługa zmian w formularzu
+        form.addEventListener('change', () => {
+            updateProgress();
+            saveFormData();
+        });
+
+        form.addEventListener('input', () => {
+            updateProgress();
+            saveFormData();
+        });
+
+        // Załaduj dane przy starcie
+        window.addEventListener('load', () => {
+            loadFormData();
+        });
+
+        // Aktualizuj pasek postępu na starcie
+        updateProgress();
+    </script>
+</body>
+</html>
