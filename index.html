@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Property Inspector - Formularz Oględzin</title>
+    <title>Open Apartment - Formularz Oględzin</title>
     <style>
         :root {
             --color-primary: #2180cd;
@@ -388,6 +388,12 @@
                 ✓ Formularz został wypełniony! Kliknij "Pobierz JSON" aby pobrać dane.
             </div>
 
+            <div style="margin-bottom: 20px;">
+                <label for="jsonLoader">Załaduj dane z pliku JSON:</label>
+                <input type="file" id="jsonLoader" accept="application/json">
+                <button type="button" id="loadJsonBtn">Załaduj JSON</button>
+            </div>
+
             <form id="ogledzinyForm">
                 <!-- SEKCJA 1: DANE OGÓLNE -->
                 <div class="section">
@@ -650,7 +656,7 @@
                     </div>
 
                     <div class="form-group form-row full">
-                        <label from="stanFug">Stan fug</label>
+                        <label for="stanFug">Stan fug</label>
                         <select id="stanFug" name="stanFug">
                             <option value="">Wybierz...</option>
                             <option value="W dobrym stanie">W dobrym stanie</option>
@@ -729,7 +735,7 @@
                     </div>
 
                     <div class="form-group form-row full">
-                        <label for="jestGaz">Czy jest gaz?</label>
+                        <span>Czy jest gaz?</span>
                         <div class="radio-group">
                             <div class="radio-item">
                                 <input type="radio" id="gaz1" name="jestGaz" value="Tak">
@@ -808,7 +814,7 @@
                     <div class="subsection-title">Winda</div>
 
                     <div class="form-group form-row full">
-                        <label for="jestWinda">Czy jest winda?</label>
+                        <label from="jestWinda">Czy jest winda?</label>
                         <div class="radio-group">
                             <div class="radio-item">
                                 <input type="radio" id="winda1" name="jestWinda" value="Tak">
@@ -854,7 +860,7 @@
                     <div class="subsection-title">Parking</div>
 
                     <div class="form-group form-row full">
-                        <label for="parking">Czy jest miejsce parkingowe?</label>
+                        <label from="parking">Czy jest miejsce parkingowe?</label>
                         <div class="radio-group">
                             <div class="radio-item">
                                 <input type="radio" id="park1" name="parking" value="Przypisane">
@@ -1295,6 +1301,61 @@
 
         // Aktualizuj pasek postępu na starcie
         updateProgress();
+
+        // Ładowanie danych z pliku JSON
+        document.getElementById('loadJsonBtn').addEventListener('click', function() {
+            const fileInput = document.getElementById('jsonLoader');
+            if (!fileInput.files.length) {
+                alert('Wybierz plik JSON!');
+                return;
+            }
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    fillFormFromJson(data);
+                } catch (err) {
+                    alert('Błąd w pliku JSON!');
+                }
+            };
+            reader.readAsText(file);
+        });
+
+        function fillFormFromJson(data) {
+            const form = document.getElementById('ogledzinyForm');
+            Object.keys(data).forEach(key => {
+                const value = data[key];
+                // Obsługa input[type=text|number|date]
+                const input = form.querySelector(`[name="${key}"]`);
+                if (input) {
+                    if (input.type === 'checkbox' || input.type === 'radio') {
+                        // Zaznacz odpowiednie checkboxy/radia
+                        const elems = Array.isArray(value) ? value : [value];
+                        elems.forEach(v => {
+                            const elem = form.querySelector(`[name="${key}"][value="${v}"]`);
+                            if (elem) elem.checked = true;
+                        });
+                    } else {
+                        input.value = value;
+                    }
+                }
+            });
+
+            // Przywróć oceny
+            for (let i = 1; i <= 5; i++) {
+                const fields = ['ocenaStan', 'ocenaMetraż', 'ocenaOświetlenie', 'ocenaTransport', 'ocenaBezpieczeństwo', 'ocenaFinałowa'];
+                fields.forEach(field => {
+                    const hiddenInput = form.querySelector(`#${field}`);
+                    if (hiddenInput && hiddenInput.value) {
+                        const btn = form.querySelector(`[data-field="${field}"][data-value="${hiddenInput.value}"]`);
+                        if (btn) btn.classList.add('active');
+                    }
+                });
+            }
+
+            updateProgress();
+        }
     </script>
 </body>
 </html>
