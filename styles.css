@@ -394,3 +394,31 @@
         .collapsible.collapsed .collapse-arrow {
             transform: rotate(-90deg);
         }
+
+/* Save Slots */
+.save-slots-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.slot-btn {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.slot-btn:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.slot-btn.active {
+    background-color: white;
+    color: var(--color-primary);
+    font-weight: bold;
+}

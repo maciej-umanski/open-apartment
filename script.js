@@ -4,6 +4,7 @@ const form = document.getElementById('ogledzinyForm');
     const progressFill = document.getElementById('progressFill');
     const saveIndicator = document.getElementById('saveIndicator');
     const successMessage = document.getElementById('successMessage');
+    let currentSlot = 1;
 
     function checkFormCleanliness() {
         const inputs = form.querySelectorAll('input, select, textarea');
@@ -105,7 +106,7 @@ const form = document.getElementById('ogledzinyForm');
     // Zapisz dane w localStorage
     function saveFormData() {
         const data = getFormData();
-        localStorage.setItem('ogledzinyFormData', JSON.stringify(data));
+        localStorage.setItem(`ogledzinyFormData_${currentSlot}`, JSON.stringify(data));
 
         // Pokaż wskaźnik zapisania
         saveIndicator.classList.add('show');
@@ -115,8 +116,12 @@ const form = document.getElementById('ogledzinyForm');
     }
 
     // Załaduj dane z localStorage
-    function loadFormData() {
-        const saved = localStorage.getItem('ogledzinyFormData');
+    function loadFormData(slot = currentSlot) {
+        const saved = localStorage.getItem(`ogledzinyFormData_${slot}`);
+        form.reset(); // Najpierw wyczyść formularz
+        document.querySelectorAll('.rating-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('input[type="hidden"]').forEach(input => input.value = '');
+
         if (saved) {
             try {
                 const data = JSON.parse(saved);
@@ -157,6 +162,9 @@ const form = document.getElementById('ogledzinyForm');
                 console.error('Błąd przy wczytywaniu danych:', e);
             }
         }
+        updateProgress();
+        checkFormCleanliness();
+        updateKosztZaMetr();
     }
 
     // Pobierz formularz jako JSON
@@ -176,11 +184,11 @@ const form = document.getElementById('ogledzinyForm');
 
     // Wyczyść formularz
     resetBtn.addEventListener('click', () => {
-        if (confirm('Czy na pewno chcesz wyczyścić cały formularz?')) {
+        if (confirm(`Czy na pewno chcesz wyczyścić dane w Zapisie ${currentSlot}?`)) {
             form.reset();
             document.querySelectorAll('.rating-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelectorAll('input[type="hidden"]').forEach(input => input.value = '');
-            localStorage.removeItem('ogledzinyFormData');
+            localStorage.removeItem(`ogledzinyFormData_${currentSlot}`);
             progressFill.style.width = '0%';
             successMessage.classList.remove('show');
             checkFormCleanliness();
@@ -211,9 +219,22 @@ const form = document.getElementById('ogledzinyForm');
     document.getElementById('cena').addEventListener('input', updateKosztZaMetr);
     document.getElementById('metrażPodany').addEventListener('input', updateKosztZaMetr);
 
+    // Obsługa przełączania slotów
+    document.querySelectorAll('.slot-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const slotNumber = btn.id.replace('slotBtn', '');
+            currentSlot = parseInt(slotNumber, 10);
+
+            document.querySelectorAll('.slot-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            loadFormData(currentSlot);
+        });
+    });
+
     // Załaduj dane przy starcie
     window.addEventListener('load', () => {
-        loadFormData();
+        loadFormData(currentSlot);
         checkFormCleanliness();
         updateKosztZaMetr();
     });
