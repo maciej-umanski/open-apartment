@@ -10,7 +10,7 @@ Etap
 Podstawowe informacje
 
 - Link do oferty
-- Adres - ulica i numer mieszkania
+- Adres mieszkania
 - Dzielnica
 - Cena w PLN
 - Metraż m²
