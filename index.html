@@ -145,6 +145,66 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="form-group form-row full">
+                        <label for="dzielnica">Dzielnica</label>
+                        <input type="text" id="dzielnica" name="dzielnica" placeholder="np. Mokotów">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="rokBudynku">Rok budynku</label>
+                            <input type="number" id="rokBudynku" name="rokBudynku">
+                        </div>
+                        <div class="form-group">
+                            <label for="typBudynku">Typ budynku</label>
+                            <select id="typBudynku" name="typBudynku">
+                                <option value="">Wybierz...</option>
+                                <option value="blok">Blok</option>
+                                <option value="kamienica">Kamienica</option>
+                                <option value="apartamentowiec">Apartamentowiec</option>
+                                <option value="dom wielorodzinny">Dom wielorodzinny</option>
+                                <option value="inne">Inne</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Łazienka</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="lazienkaPolaczona" name="lazienkaTyp" value="polaczona">
+                                    <label for="lazienkaPolaczona">Połączona</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="lazienkaOsobna" name="lazienkaTyp" value="osobna">
+                                    <label for="lazienkaOsobna">Osobna toaleta</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label> Czy meble zostają? </label>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="mebleTak" name="mebleZostaja" value="tak">
+                                <label for="mebleTak">Tak</label>
+                                <input type="checkbox" id="mebleNie" name="mebleZostaja" value="nie">
+                                <label for="mebleNie">Nie</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group form-row full">
+                        <label>Certyfikat energetyczny:</label>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="certyfikatTak" name="certyfikatEnergetyczny" value="tak">
+                            <label for="certyfikatTak">Tak</label>
+                            <input type="checkbox" id="certyfikatNie" name="certyfikatEnergetyczny" value="nie">
+                            <label for="certyfikatNie">Nie</label>
+                        </div>
+                        <label for="certyfikatEnergetycznyNr" class="sr-only">Nr certyfikatu (jeśli tak)</label>
+                        <input type="text" id="certyfikatEnergetycznyNr" name="certyfikatEnergetycznyNr" placeholder="Nr certyfikatu (jeśli tak)">
+                    </div>
                 </div>
             </div>
 
