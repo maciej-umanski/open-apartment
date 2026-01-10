@@ -28,8 +28,6 @@
         </div>
 
         <form id="ogledzinyForm">
-            <!-- SEKCJA 1: DANE OGÓLNE -->
-
             <div class="section collapsible">
                 <div class="section-title collapsible-header" tabindex="0" role="button" aria-expanded="true">
                     Etap
@@ -150,772 +148,416 @@
                 </div>
             </div>
 
-            <!-- SEKCJA 2: STAN MIESZKANIA -->
             <div class="section collapsible">
                 <div class="section-title collapsible-header" tabindex="0" role="button" aria-expanded="true">
-                    Stan Mieszkania
+                    Dane kontaktowe
                     <span class="collapse-arrow" style="margin-left:auto;">▼</span>
                 </div>
                 <div class="collapsible-content">
-                    <div class="form-group form-row full">
-                        <label>Ocena wizualna całości mieszkania</label>
-                        <div class="radio-group">
-                            <div class="radio-item">
-                                <input type="radio" id="stan1" name="stanOgolny" value="Doskonały">
-                                <label for="stan1" class="radio-label">Doskonały</label>
-                            </div>
-                            <div class="radio-item">
-                                <input type="radio" id="stan2" name="stanOgolny" value="Bardzo dobry">
-                                <label for="stan2" class="radio-label">Bardzo dobry</label>
-                            </div>
-                            <div class="radio-item">
-                                <input type="radio" id="stan3" name="stanOgolny" value="Dobry">
-                                <label for="stan3" class="radio-label">Dobry</label>
-                            </div>
-                            <div class="radio-item">
-                                <input type="radio" id="stan4" name="stanOgolny" value="Zadowalający">
-                                <label for="stan4" class="radio-label">Zadowalający</label>
-                            </div>
-                            <div class="radio-item">
-                                <input type="radio" id="stan5" name="stanOgolny" value="Wymaga remontu">
-                                <label for="stan5" class="radio-label">Wymaga remontu</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="subsection-title">Okna</div>
-
-                    <div class="form-group form-row full">
-                        <label for="ekspozycjaOkien">Ekspozycja okien</label>
-                        <input type="text" id="ekspozycjaOkien" name="ekspozycjaOkien"
-                               placeholder="np. wschód, zachód, południe">
-                    </div>
-
-                    <div class="form-group form-row full">
-                        <label>Typ okien</label>
-                        <div class="checkbox-group">
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="okna1" name="typOkien" value="Drewniane">
-                                <label for="okna1" class="checkbox-label">Drewniane</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="okna2" name="typOkien" value="Plastikowe">
-                                <label for="okna2" class="checkbox-label">Plastikowe</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="okna3" name="typOkien" value="Aluminiowe">
-                                <label for="okna3" class="checkbox-label">Aluminiowe</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group form-row full">
-                        <label>Liczba komor okien</label>
-                        <div class="checkbox-group">
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="komory1" name="komorOkien" value="Jednokomorowe">
-                                <label for="komory1" class="checkbox-label">Jednokomorowe</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="komory2" name="komorOkien" value="Dwukomorowe">
-                                <label for="komory2" class="checkbox-label">Dwukomorowe</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="komory3" name="komorOkien" value="Trzykomorowe">
-                                <label for="komory3" class="checkbox-label">Trzykomorowe</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group form-row full">
-                        <label for="stanSzczelin">Stan szczelin okien</label>
-                        <select id="stanSzczelin" name="stanSzczelin">
-                            <option value="">Wybierz...</option>
-                            <option value="Szczelne">Szczelne</option>
-                            <option value="Nieszczelne">Nieszczelne</option>
-                        </select>
-                    </div>
-
-                    <div class="subsection-title">Balkon/Taras</div>
-
-                    <div class="form-group form-row full">
-                        <label for="stanBalkonu">Stan balkonu/tarasu</label>
-                        <select id="stanBalkonu" name="stanBalkonu">
-                            <option value="">Wybierz...</option>
-                            <option value="Brak">Brak</option>
-                            <option value="Dobry">Dobry</option>
-                            <option value="Do remontu">Do remontu</option>
-                        </select>
-                    </div>
-
-                    <div class="subsection-title">Drzwi</div>
-
-                    <div class="form-group form-row full">
-                        <label for="rodzajDrzwi">Rodzaj drzwi wejściowych</label>
-                        <select id="rodzajDrzwi" name="rodzajDrzwi">
-                            <option value="">Wybierz...</option>
-                            <option value="Antywłamaniowe">Antywłamaniowe</option>
-                            <option value="Zwykłe">Zwykłe</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group form-row full">
-                        <label for="stanDrzwi">Stan drzwi wewnętrznych</label>
-                        <select id="stanDrzwi" name="stanDrzwi">
-                            <option value="">Wybierz...</option>
-                            <option value="Nowe">Nowe</option>
-                            <option value="Do odświeżenia">Do odświeżenia</option>
-                            <option value="Do wymiany">Do wymiany</option>
-                        </select>
-                    </div>
-
-                    <div class="subsection-title">Ściany i Sufity</div>
-
-                    <div class="form-group form-row full">
-                        <label for="stanTynkow">Stan tynków</label>
-                        <select id="stanTynkow" name="stanTynkow">
-                            <option value="">Wybierz...</option>
-                            <option value="Bez uszkodzeń">Bez uszkodzeń</option>
-                            <option value="Nieznaczne pęknięcia">Nieznaczne pęknięcia</option>
-                            <option value="Znaczne pęknięcia">Znaczne pęknięcia</option>
-                            <option value="Wilgoć/pleśń">Wilgoć/pleśń</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group form-row full">
-                        <label for="wysokoscPomieszczen">Wysokość pomieszczeń (cm)</label>
-                        <input type="number" id="wysokoscPomieszczen" name="wysokoscPomieszczen">
-                    </div>
-
-                    <div class="subsection-title">Podłogi</div>
-
-                    <div class="form-row">
-                        <div class="form-group form-row full">
-                            <label for="podlogaSalon">Podłoga - Salon/Pokój dzienny</label>
-                            <input type="text" id="podlogaSalon" name="podlogaSalon"
-                                   placeholder="np. drewno, laminat, ceramika">
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group form-row full">
-                            <label for="podlogaKuchnia">Podłoga - Kuchnia</label>
-                            <input type="text" id="podlogaKuchnia" name="podlogaKuchnia"
-                                   placeholder="np. drewno, laminat, ceramika">
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group form-row full">
-                            <label for="podlogaSypialnia">Podłoga - Sypialnia</label>
-                            <input type="text" id="podlogaSypialnia" name="podlogaSypialnia"
-                                   placeholder="np. drewno, laminat, ceramika">
-                        </div>
-                    </div>
-
-                    <div class="form-group form-row full">
-                        <label for="stanPodlog">Stan podłóg</label>
-                        <select id="stanPodlog" name="stanPodlog">
-                            <option value="">Wybierz...</option>
-                            <option value="Bez uszkodzeń">Bez uszkodzeń</option>
-                            <option value="Nieznaczne uszkodzenia">Nieznaczne uszkodzenia</option>
-                            <option value="Znaczne uszkodzenia">Znaczne uszkodzenia</option>
-                        </select>
-                    </div>
-
-                    <div class="subsection-title">Kuchnia</div>
-
-                    <div class="form-group form-row full">
-                        <label>Typ kuchni</label>
-                        <div class="radio-group">
-                            <div class="radio-item">
-                                <input type="radio" id="kuch1" name="typKuchni" value="Zabudowana">
-                                <label for="kuch1" class="radio-label">Zabudowana</label>
-                            </div>
-                            <div class="radio-item">
-                                <input type="radio" id="kuch2" name="typKuchni" value="Oddzielna">
-                                <label for="kuch2" class="radio-label">Oddzielna (nieotwarta)</label>
-                            </div>
-                            <div class="radio-item">
-                                <input type="radio" id="kuch3" name="typKuchni" value="Otwarta">
-                                <label for="kuch3" class="radio-label">Otwarta (połączona)</label>
-                            </div>
-                            <div class="radio-item">
-                                <input type="radio" id="kuch4" name="typKuchni" value="Brak">
-                                <label for="kuch4" class="radio-label">Brak zabudowanej</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group form-row full">
-                        <label for="stanUrządzen">Stan urządzeń kuchni</label>
-                        <select id="stanUrządzen" name="stanUrządzen">
-                            <option value="">Wybierz...</option>
-                            <option value="Sprawne">Sprawne</option>
-                            <option value="Do remontu">Do remontu</option>
-                            <option value="Do wymiany">Do wymiany</option>
-                        </select>
-                    </div>
-
-                    <div class="subsection-title">Łazienka i Toaleta</div>
-
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="liczbaLazienek">Liczba łazienek</label>
-                            <input type="number" id="liczbaLazienek" name="liczbaLazienek">
+                            <label for="kontaktImieNazwisko">Imię i nazwisko</label>
+                            <input type="text" id="kontaktImieNazwisko" name="kontaktImieNazwisko">
                         </div>
                         <div class="form-group">
-                            <label for="liczbaToalet">Liczba oddzielnych toalet</label>
-                            <input type="number" id="liczbaToalet" name="liczbaToalet">
+                            <label for="kontaktTelefon">Telefon</label>
+                            <input type="tel" id="kontaktTelefon" name="kontaktTelefon">
                         </div>
                     </div>
-
-                    <div class="form-group form-row full">
-                        <label for="stanFug">Stan fug</label>
-                        <select id="stanFug" name="stanFug">
-                            <option value="">Wybierz...</option>
-                            <option value="W dobrym stanie">W dobrym stanie</option>
-                            <option value="Zgrzybiałe">Zgrzybiałe</option>
-                            <option value="Wymagają czyszczenia">Wymagają czyszczenia</option>
-                        </select>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="kontaktEmail">Email</label>
+                            <input type="email" id="kontaktEmail" name="kontaktEmail">
+                        </div>
+                        <div class="form-group">
+                            <label for="kontaktAgencja">Agencja (jeśli pośrednik)</label>
+                            <input type="text" id="kontaktAgencja" name="kontaktAgencja">
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- SEKCJA 3: INSTALACJE -->
             <div class="section collapsible">
                 <div class="section-title collapsible-header" tabindex="0" role="button" aria-expanded="true">
-                    Instalacje i Media
+                    Informacje do oglądania
                     <span class="collapse-arrow" style="margin-left:auto;">▼</span>
                 </div>
                 <div class="collapsible-content">
-                    <div class="subsection-title">Elektryka</div>
-
-                    <div class="form-group form-row full">
-                        <label for="rodzajPrzewodów">Rodzaj przewodów</label>
-                        <select id="rodzajPrzewodów" name="rodzajPrzewodów">
-                            <option value="">Wybierz...</option>
-                            <option value="Miedziane">Miedziane</option>
-                            <option value="Aluminiowe">Aluminiowe</option>
-                            <option value="Mieszane">Mieszane</option>
-                        </select>
-                    </div>
-
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="liczbaGniazdek">Liczba gniazdek (razem)</label>
-                            <input type="number" id="liczbaGniazdek" name="liczbaGniazdek">
+                            <label for="ogladanieData">Data</label>
+                            <input type="date" id="ogladanieData" name="ogladanieData">
                         </div>
                         <div class="form-group">
-                            <label for="średniaMoc">Średnia moc dostępna (A)</label>
-                            <input type="number" id="średniaMoc" name="średniaMoc">
+                            <label for="ogladanieGodzina">Godzina</label>
+                            <input type="text" id="ogladanieGodzina" name="ogladanieGodzina" placeholder="np. 10:30">
                         </div>
                     </div>
-
-                    <div class="subsection-title">Ogrzewanie</div>
-
                     <div class="form-group form-row full">
-                        <label for="rodzajOgrzewania">Rodzaj ogrzewania</label>
-                        <select id="rodzajOgrzewania" name="rodzajOgrzewania">
-                            <option value="">Wybierz...</option>
-                            <option value="Centralne z pieca">Centralne z pieca</option>
-                            <option value="Centralne z gazu">Centralne z gazu</option>
-                            <option value="Pompa ciepła">Pompa ciepła</option>
-                            <option value="Klimatyzacja">Klimatyzacja</option>
-                            <option value="Piece kaflowe">Piece kaflowe</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group form-row">
-                        <label for="oplataBieżąca">Opłata za ogrzewanie (PLN/miesiąc)</label>
-                        <input type="number" id="oplataBieżąca" name="oplataBieżąca">
-                    </div>
-
-                    <div class="subsection-title">Woda i Gaz</div>
-
-                    <div class="form-group form-row full">
-                        <label for="stanInstalacjiWodnej">Stan instalacji wodnej</label>
-                        <select id="stanInstalacjiWodnej" name="stanInstalacjiWodnej">
-                            <option value="">Wybierz...</option>
-                            <option value="Nowa">Nowa</option>
-                            <option value="Częściowo wymieniona">Częściowo wymieniona</option>
-                            <option value="Stara">Stara</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group form-row full">
-                        <label for="typRurWody">Typ rur wodnych</label>
-                        <select id="typRurWody" name="typRurWody">
-                            <option value="">Wybierz...</option>
-                            <option value="Miedziane">Miedziane</option>
-                            <option value="Galwanizowane">Galwanizowane</option>
-                            <option value="Plastikowe">Plastikowe (PVC/PPR)</option>
-                            <option value="Mieszane">Mieszane</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group form-row">
-                        <label for="ciśnienieWody">Ciśnienie wody</label>
-                        <select id="ciśnienieWody" name="ciśnienieWody">
-                            <option value="">Wybierz...</option>
-                            <option value="Dostateczne">Dostateczne</option>
-                            <option value="Słabe">Słabe</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group form-row full">
-                        <label for="stanInstalacjiGazowej">Stan instalacji gazowej</label>
-                        <select id="stanInstalacjiGazowej" name="stanInstalacjiGazowej">
-                            <option value="">Wybierz...</option>
-                            <option value="Nowa">Nowa</option>
-                            <option value="Stara">Stara</option>
-                            <option value="Brak">Brak</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group form-row full">
-                        <span>Czy jest gaz?</span>
-                        <div class="radio-group">
-                            <div class="radio-item">
-                                <input type="radio" id="gaz1" name="jestGaz" value="Tak">
-                                <label for="gaz1" class="radio-label">Tak</label>
-                            </div>
-                            <div class="radio-item">
-                                <input type="radio" id="gaz2" name="jestGaz" value="Nie">
-                                <label for="gaz2" class="radio-label">Nie</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="subsection-title">Wentylacja</div>
-
-                    <div class="form-group form-row full">
-                        <label for="systemWentylacji">System wentylacji</label>
-                        <select id="systemWentylacji" name="systemWentylacji">
-                            <option value="">Wybierz...</option>
-                            <option value="Naturalna">Naturalna</option>
-                            <option value="Mechaniczna">Mechaniczna</option>
-                            <option value="Mieszana">Mieszana</option>
-                            <option value="Klimatyzacja">Klimatyzacja</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group form-row full">
-                        <label for="problemyWilgoć">Problemy z wilgocią/pleśnią</label>
-                        <select id="problemyWilgoć" name="problemyWilgoć">
-                            <option value="">Wybierz...</option>
-                            <option value="Brak">Brak</option>
-                            <option value="Czasami">Czasami</option>
-                            <option value="Regularnie">Regularnie</option>
-                        </select>
+                        <label for="ogladanieKomentarz">Komentarz po rozmowie</label>
+                        <textarea id="ogladanieKomentarz" name="ogladanieKomentarz" rows="2"></textarea>
                     </div>
                 </div>
             </div>
 
-            <!-- SEKCJA 4: INFRASTRUKTURA BUDYNKU -->
+            <!-- SEKCJA: MIESZKANIE -->
             <div class="section collapsible">
                 <div class="section-title collapsible-header" tabindex="0" role="button" aria-expanded="true">
-                    Infrastruktura Budynku
+                    Mieszkanie
                     <span class="collapse-arrow" style="margin-left:auto;">▼</span>
                 </div>
                 <div class="collapsible-content">
-                    <div class="subsection-title">Typ Budynku</div>
-
-                    <div class="form-group form-row full">
-                        <label for="materialBudynku">Materiał budynku</label>
-                        <select id="materialBudynku" name="materialBudynku">
-                            <option value="">Wybierz...</option>
-                            <option value="Cegła">Cegła</option>
-                            <option value="Beton">Beton</option>
-                            <option value="Wielka płyta">Wielka płyta</option>
-                            <option value="Żelbeton">Żelbeton</option>
-                        </select>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="liczbaPoziomów">Liczba pięter w budynku</label>
-                            <input type="number" id="liczbaPoziomów" name="liczbaPoziomów">
+                    <!-- PODSEKCJA: KUCHNIA -->
+                    <div class="subsection collapsible">
+                        <div class="subsection-title collapsible-header" tabindex="0" role="button" aria-expanded="true">
+                            Kuchnia
+                            <span class="collapse-arrow" style="margin-left:auto;">▼</span>
                         </div>
-                        <div class="form-group">
-                            <label for="rokBudowy">Rok budowy</label>
-                            <input type="number" id="rokBudowy" name="rokBudowy">
-                        </div>
-                    </div>
-
-                    <div class="form-group form-row full">
-                        <label for="stanElewacji">Stan elewacji</label>
-                        <select id="stanElewacji" name="stanElewacji">
-                            <option value="">Wybierz...</option>
-                            <option value="Doskonały">Doskonały</option>
-                            <option value="Dobry">Dobry</option>
-                            <option value="Wymaga odświeżenia">Wymaga odświeżenia</option>
-                            <option value="Wymaga remontu">Wymaga remontu</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group form-row full">
-                        <label for="stanDachu">Stan dachu</label>
-                        <select id="stanDachu" name="stanDachu">
-                            <option value="">Wybierz...</option>
-                            <option value="Nowy">Nowy</option>
-                            <option value="Po remoncie">Po remoncie</option>
-                            <option value="Wymaga remontu">Wymaga remontu</option>
-                        </select>
-                    </div>
-
-                    <div class="subsection-title">Winda</div>
-
-                    <div class="form-group form-row full">
-                        <span>Czy jest winda?</span>
-                        <div class="radio-group">
-                            <div class="radio-item">
-                                <input type="radio" id="winda1" name="jestWinda" value="Tak">
-                                <label for="winda1" class="radio-label">Tak</label>
+                        <div class="collapsible-content">
+                            <div class="form-group">
+                                <div class="subsection-title">Dane techniczne</div>
+                                <label for="kuchniaMetraz">Metraż</label>
+                                <input type="text" id="kuchniaMetraz" name="kuchniaMetraz" placeholder="m²">
                             </div>
-                            <div class="radio-item">
-                                <input type="radio" id="winda2" name="jestWinda" value="Nie">
-                                <label for="winda2" class="radio-label">Nie</label>
+                            <div class="form-group">
+                                <label>Ściany:</label>
+                                <div class="checkbox-group">
+                                    <label><input type="checkbox" name="kuchniaScianyOk"> ok</label>
+                                    <label><input type="checkbox" name="kuchniaScianyNieOk"> nie ok</label>
+                                </div>
+                                <div class="conditional-group" id="kuchniaScianyNieOkDetails" style="display:none;">
+                                    <label>Jeśli nie ok:</label>
+                                    <label><input type="checkbox" name="kuchniaScianyWilgoc"> wilgoć/pleśń</label>
+                                    <label><input type="checkbox" name="kuchniaScianyPekniecia"> pęknięcia</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="kuchniaPodlogaTyp">Podłoga: jaka?</label>
+                                <input type="text" id="kuchniaPodlogaTyp" name="kuchniaPodlogaTyp" placeholder="np. płytki, panele">
+                                <div class="checkbox-group">
+                                    <label><input type="checkbox" name="kuchniaPodlogaBezU"> Bez uszkodzeń</label>
+                                    <label><input type="checkbox" name="kuchniaPodlogaNieznaczne"> Nieznaczne uszkodzenia</label>
+                                    <label><input type="checkbox" name="kuchniaPodlogaZnaczne"> Znaczne uszkodzenia</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Okna:</label>
+                                <div class="radio-group">
+                                    <label><input type="radio" name="kuchniaOkna" value="tak"> Tak</label>
+                                    <label><input type="radio" name="kuchniaOkna" value="nie"> Nie</label>
+                                </div>
+                                <div class="conditional-group" id="kuchniaOknaDetails" style="display:none;">
+                                    <label for="kuchniaOknaJakie">Jakie i w jakim stanie?</label>
+                                    <input type="text" id="kuchniaOknaJakie" name="kuchniaOknaJakie" placeholder="np. plastikowe, drewniane, stan">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Ekspozycja:</label>
+                                <div class="checkbox-group">
+                                    <label><input type="checkbox" name="kuchniaEkspozycjaPolnoc"> północ</label>
+                                    <label><input type="checkbox" name="kuchniaEkspozycjaPoludnie"> południe</label>
+                                    <label><input type="checkbox" name="kuchniaEkspozycjaWschod"> wschód</label>
+                                    <label><input type="checkbox" name="kuchniaEkspozycjaZachod"> zachód</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Czy jest wyciąg z kuchni?</label>
+                                <div class="radio-group">
+                                    <label><input type="radio" name="kuchniaWyciag" value="tak"> Tak</label>
+                                    <label><input type="radio" name="kuchniaWyciag" value="nie"> Nie</label>
+                                </div>
+                                <div class="conditional-group" id="kuchniaWyciagFunkcjonalnosc" style="display:none;">
+                                    <label>Funkcjonalność:</label>
+                                    <label><input type="checkbox" name="kuchniaWyciagSprawny"> Sprawny</label>
+                                    <label><input type="checkbox" name="kuchniaWyciagSlaby"> Słaby</label>
+                                    <label><input type="checkbox" name="kuchniaWyciagNiezaworowy"> Niezaworowy</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="kuchniaOswietlenie">Oświetlenie:</label>
+                                <input type="text" id="kuchniaOswietlenie" name="kuchniaOswietlenie" placeholder="Opis oświetlenia">
+                            </div>
+                            <div class="subsection-title">Wyposażenie i sprzęt</div>
+                            <div class="form-group">
+                                <label>Typ kuchni:</label>
+                                <div class="radio-group">
+                                    <label><input type="radio" name="kuchniaTyp" value="oddzielna"> Oddzielna</label>
+                                    <label><input type="radio" name="kuchniaTyp" value="otwarta"> Otwarta (połączona)</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Zabudowa:</label>
+                                <div class="radio-group">
+                                    <label><input type="radio" name="kuchniaZabudowa" value="tak"> Tak</label>
+                                    <label><input type="radio" name="kuchniaZabudowa" value="nie"> Nie</label>
+                                </div>
+                            </div>
+                            <div class="conditional-group" id="kuchniaZabudowaDetails" style="display:none;">
+                                <div class="form-group">
+                                    <label>Stan urządzeń:</label>
+                                    <div class="checkbox-group">
+                                        <label><input type="checkbox" name="kuchniaUrzadzeniaSprawne"> Sprawne</label>
+                                        <label><input type="checkbox" name="kuchniaUrzadzeniaDoWymiany"> Do wymiany</label>
+                                    </div>
+                                    <div class="conditional-group" id="kuchniaUrzadzeniaDoWymianyDetails" style="display:none;">
+                                        <label for="kuchniaUrzadzeniaCoWymiana">Jeśli do wymiany, to co?</label>
+                                        <input type="text" id="kuchniaUrzadzeniaCoWymiana" name="kuchniaUrzadzeniaCoWymiana" placeholder="np. lodówka, piekarnik">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Płyta:</label>
+                                    <div class="checkbox-group">
+                                        <label><input type="checkbox" name="kuchniaPlytaGaz"> palniki gazowe</label>
+                                        <label><input type="checkbox" name="kuchniaPlytaElektryczna"> elektryczna</label>
+                                        <label><input type="checkbox" name="kuchniaPlytaIndukcja"> indukcja</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Piekarnik:</label>
+                                    <div class="radio-group">
+                                        <label><input type="radio" name="kuchniaPiekarnik" value="jest"> Jest</label>
+                                        <label><input type="radio" name="kuchniaPiekarnik" value="brak"> Brak</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Okap:</label>
+                                    <div class="radio-group">
+                                        <label><input type="radio" name="kuchniaOkap" value="jest"> Jest</label>
+                                        <label><input type="radio" name="kuchniaOkap" value="brak"> Brak</label>
+                                    </div>
+                                    <div class="conditional-group" id="kuchniaOkapFunkcjonalnosc" style="display:none;">
+                                        <label for="kuchniaOkapFunkcjonalnoscOpis">Funkcjonalność:</label>
+                                        <input type="text" id="kuchniaOkapFunkcjonalnoscOpis" name="kuchniaOkapFunkcjonalnoscOpis" placeholder="Opis funkcjonalności okapu">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Zmywarka:</label>
+                                    <div class="radio-group">
+                                        <label><input type="radio" name="kuchniaZmywarka" value="jest"> Jest</label>
+                                        <label><input type="radio" name="kuchniaZmywarka" value="brak"> Brak</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Lodówka:</label>
+                                    <div class="radio-group">
+                                        <label><input type="radio" name="kuchniaLodowka" value="jest"> Jest</label>
+                                        <label><input type="radio" name="kuchniaLodowka" value="brak"> Brak</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Szafki:</label>
+                                    <div class="checkbox-group">
+                                        <label><input type="checkbox" name="kuchniaSzafkiSolidne"> Solidne</label>
+                                        <label><input type="checkbox" name="kuchniaSzafkiRemont"> Do remontu</label>
+                                        <label><input type="checkbox" name="kuchniaSzafkiWymiana"> Do wymiany</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="kuchniaBlatJaki">Blat: jaki?</label>
+                                    <input type="text" id="kuchniaBlatJaki" name="kuchniaBlatJaki" placeholder="np. laminat, kamień">
+                                    <div class="checkbox-group">
+                                        <label><input type="checkbox" name="kuchniaBlatBezU"> Bez uszkodzeń</label>
+                                        <label><input type="checkbox" name="kuchniaBlatUszkodzony"> Uszkodzony</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Liczba gniazdek elektrycznych: czy wystarczająco?</label>
+                                    <div class="radio-group">
+                                        <label><input type="radio" name="kuchniaGniazdkaWystarczajaco" value="tak"> Tak</label>
+                                        <label><input type="radio" name="kuchniaGniazdkaWystarczajaco" value="nie"> Nie</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Miejsce do przechowywania:</label>
+                                    <div class="radio-group">
+                                        <label><input type="radio" name="kuchniaMiejscePrzechowywanie" value="duzo"> Dużo</label>
+                                        <label><input type="radio" name="kuchniaMiejscePrzechowywanie" value="malo"> Mało</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="kuchniaPytania">Pytania</label>
+                                <textarea id="kuchniaPytania" name="kuchniaPytania" rows="2"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="kuchniaKomentarz">Komentarz</label>
+                                <textarea id="kuchniaKomentarz" name="kuchniaKomentarz" rows="2"></textarea>
                             </div>
                         </div>
                     </div>
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="liczbaWind">Liczba wind</label>
-                            <input type="number" id="liczbaWind" name="liczbaWind">
+                    <!-- PODSEKCJA: ŁAZIENKA -->
+                    <div class="subsection collapsible">
+                        <div class="subsection-title collapsible-header" tabindex="0" role="button" aria-expanded="true">
+                            Łazienka
+                            <span class="collapse-arrow" style="margin-left:auto;">▼</span>
                         </div>
-                        <div class="form-group">
-                            <label for="stanWindy">Stan techniczny windy</label>
-                            <select id="stanWindy" name="stanWindy">
-                                <option value="">Wybierz...</option>
-                                <option value="Nowy/Nowoczesny">Nowy/Nowoczesny</option>
-                                <option value="Dobry">Dobry</option>
-                                <option value="Wymaga przeglądu">Wymaga przeglądu</option>
-                                <option value="Do wymiany">Do wymiany</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="subsection-title">Klatka Schodowa</div>
-
-                    <div class="form-group form-row full">
-                        <label for="stanKlatki">Stan ogólny klatki schodowej</label>
-                        <select id="stanKlatki" name="stanKlatki">
-                            <option value="">Wybierz...</option>
-                            <option value="Bardzo czysty">Bardzo czysty</option>
-                            <option value="Czysty">Czysty</option>
-                            <option value="Brudny">Brudny</option>
-                            <option value="Zaniedbany">Zaniedbany</option>
-                        </select>
-                    </div>
-
-                    <div class="subsection-title">Parking</div>
-
-                    <div class="form-group form-row full">
-                        <span>Czy jest miejsce parkingowe?</span>
-                        <div class="radio-group">
-                            <div class="radio-item">
-                                <input type="radio" id="park1" name="parking" value="Przypisane">
-                                <label for="park1" class="radio-label">Tak (przypisane)</label>
+                        <div class="collapsible-content">
+                            <div class="form-group">
+                                <div class="subsection-title">Dane techniczne</div>
+                                <label for="lazienkaMetraz">Metraż</label>
+                                <input type="text" id="lazienkaMetraz" name="lazienkaMetraz" placeholder="m²">
                             </div>
-                            <div class="radio-item">
-                                <input type="radio" id="park2" name="parking" value="Dowolne">
-                                <label for="park2" class="radio-label">Tak (dowolne)</label>
+                            <div class="form-group">
+                                <label>Ściany:</label>
+                                <div class="checkbox-group">
+                                    <label><input type="checkbox" name="lazienkaScianyOk"> ok</label>
+                                    <label><input type="checkbox" name="lazienkaScianyNieOk"> nie ok</label>
+                                </div>
+                                <div class="conditional-group" id="lazienkaScianyNieOkDetails" style="display:none;">
+                                    <label>Jeśli nie ok:</label>
+                                    <label><input type="checkbox" name="lazienkaScianyWilgoc"> wilgoć/pleśń</label>
+                                    <label><input type="checkbox" name="lazienkaScianyPekniecia"> pęknięcia</label>
+                                </div>
                             </div>
-                            <div class="radio-item">
-                                <input type="radio" id="park3" name="parking" value="Nie">
-                                <label for="park3" class="radio-label">Nie</label>
+                            <div class="form-group">
+                                <label for="lazienkaPodlogaTyp">Podłoga: jaka?</label>
+                                <input type="text" id="lazienkaPodlogaTyp" name="lazienkaPodlogaTyp" placeholder="np. płytki, panele">
+                                <div class="checkbox-group">
+                                    <label><input type="checkbox" name="lazienkaPodlogaBezU"> Bez uszkodzeń</label>
+                                    <label><input type="checkbox" name="lazienkaPodlogaNieznaczne"> Nieznaczne uszkodzenia</label>
+                                    <label><input type="checkbox" name="lazienkaPodlogaZnaczne"> Znaczne uszkodzenia</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Okna:</label>
+                                <div class="radio-group">
+                                    <label><input type="radio" name="lazienkaOkna" value="tak"> Tak</label>
+                                    <label><input type="radio" name="lazienkaOkna" value="nie"> Nie</label>
+                                </div>
+                                <div class="conditional-group" id="lazienkaOknaDetails" style="display:none;">
+                                    <label for="lazienkaOknaJakie">Jakie i w jakim stanie?</label>
+                                    <input type="text" id="lazienkaOknaJakie" name="lazienkaOknaJakie" placeholder="np. plastikowe, drewniane, stan">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Ekspozycja:</label>
+                                <div class="checkbox-group">
+                                    <label><input type="checkbox" name="lazienkaEkspozycjaPolnoc"> północ</label>
+                                    <label><input type="checkbox" name="lazienkaEkspozycjaPoludnie"> południe</label>
+                                    <label><input type="checkbox" name="lazienkaEkspozycjaWschod"> wschód</label>
+                                    <label><input type="checkbox" name="lazienkaEkspozycjaZachod"> zachód</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Czy jest wyciąg z łazienki?</label>
+                                <div class="radio-group">
+                                    <label><input type="radio" name="lazienkaWyciag" value="tak"> Tak</label>
+                                    <label><input type="radio" name="lazienkaWyciag" value="nie"> Nie</label>
+                                </div>
+                                <div class="conditional-group" id="lazienkaWyciagFunkcjonalnosc" style="display:none;">
+                                    <label>Funkcjonalność:</label>
+                                    <label><input type="checkbox" name="lazienkaWyciagSprawny"> Sprawny</label>
+                                    <label><input type="checkbox" name="lazienkaWyciagSlaby"> Słaby</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="lazienkaOswietlenie">Oświetlenie:</label>
+                                <input type="text" id="lazienkaOswietlenie" name="lazienkaOswietlenie" placeholder="Opis oświetlenia">
+                            </div>
+                            <div class="form-group">
+                                <label>Typ ogrzewania (jeśli jest):</label>
+                                <div class="checkbox-group">
+                                    <label><input type="checkbox" name="lazienkaOgrzewanieKaloryfer"> Kaloryfer</label>
+                                    <label><input type="checkbox" name="lazienkaOgrzewanieGrzejnik"> Grzejnik łazienkowy</label>
+                                    <label><input type="checkbox" name="lazienkaOgrzewaniePodlogowka"> Podłogówka</label>
+                                    <label><input type="checkbox" name="lazienkaOgrzewanieBrak"> Brak</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Fugi:</label>
+                                <div class="checkbox-group">
+                                    <label><input type="checkbox" name="lazienkaFugiDobre"> W dobrym stanie</label>
+                                    <label><input type="checkbox" name="lazienkaFugiZgrzybiala"> Zgrzybiałe</label>
+                                    <label><input type="checkbox" name="lazienkaFugiCzyszczenie"> Wymagają czyszczenia/uszczelnienia</label>
+                                </div>
+                            </div>
+                            <div class="subsection-title">Wyposażenie i sprzęt</div>
+                            <div class="form-group">
+                                <label>Muszla klozetowa:</label>
+                                <div class="checkbox-group">
+                                    <label><input type="checkbox" name="lazienkaMuszlaBezU"> Bez uszkodzeń</label>
+                                    <label><input type="checkbox" name="lazienkaMuszlaUszkodzona"> Uszkodzona</label>
+                                    <label><input type="checkbox" name="lazienkaMuszlaPekla"> Pękła</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Spłuczka toaletowa:</label>
+                                <div class="checkbox-group">
+                                    <label><input type="checkbox" name="lazienkaSpluczkaSprawna"> Sprawna</label>
+                                    <label><input type="checkbox" name="lazienkaSpluczkaNieszczelna"> Nieszczelna</label>
+                                    <label><input type="checkbox" name="lazienkaSpluczkaWymiana"> Do wymiany</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Umywalka(i):</label>
+                                <div class="checkbox-group">
+                                    <label><input type="checkbox" name="lazienkaUmywalkaBezU"> Bez uszkodzeń</label>
+                                    <label><input type="checkbox" name="lazienkaUmywalkaUszkodzona"> Uszkodzona</label>
+                                    <label><input type="checkbox" name="lazienkaUmywalkaPeknieta"> Pęknięta</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Armatura:</label>
+                                <div class="checkbox-group">
+                                    <label><input type="checkbox" name="lazienkaArmaturaWanna"> Wanna</label>
+                                    <label><input type="checkbox" name="lazienkaArmaturaPrysznic"> Prysznic</label>
+                                </div>
+                                <div class="checkbox-group">
+                                    <label><input type="checkbox" name="lazienkaArmaturaSprawna"> Sprawna</label>
+                                    <label><input type="checkbox" name="lazienkaArmaturaNieszczelna"> Nieszczelna</label>
+                                    <label><input type="checkbox" name="lazienkaArmaturaWymiana"> Do wymiany</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Szafka:</label>
+                                <div class="radio-group">
+                                    <label><input type="radio" name="lazienkaSzafka" value="jest"> Jest</label>
+                                    <label><input type="radio" name="lazienkaSzafka" value="brak"> Brak</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Lustro:</label>
+                                <div class="radio-group">
+                                    <label><input type="radio" name="lazienkaLustro" value="jest"> Jest</label>
+                                    <label><input type="radio" name="lazienkaLustro" value="brak"> Brak</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Pralka:</label>
+                                <div class="radio-group">
+                                    <label><input type="radio" name="lazienkaPralka" value="jest"> Jest</label>
+                                    <label><input type="radio" name="lazienkaPralka" value="brak"> Brak</label>
+                                </div>
+                                <div class="conditional-group" id="lazienkaPralkaBrakDetails" style="display:none;">
+                                    <label for="lazienkaPralkaCzyZmiesci">Jeśli brak, czy się zmieści?</label>
+                                    <input type="text" id="lazienkaPralkaCzyZmiesci" name="lazienkaPralkaCzyZmiesci" placeholder="np. tak, nie, uwagi">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Liczba gniazdek elektrycznych, czy wystarczająco?</label>
+                                <div class="radio-group">
+                                    <label><input type="radio" name="lazienkaGniazdkaWystarczajaco" value="tak"> Tak</label>
+                                    <label><input type="radio" name="lazienkaGniazdkaWystarczajaco" value="nie"> Nie</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Miejsce do przechowywania:</label>
+                                <div class="radio-group">
+                                    <label><input type="radio" name="lazienkaMiejscePrzechowywanie" value="duzo"> dużo</label>
+                                    <label><input type="radio" name="lazienkaMiejscePrzechowywanie" value="malo"> mało</label>
+                                    <label><input type="radio" name="lazienkaMiejscePrzechowywanie" value="brak"> brak</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="lazienkaPytania">Pytania</label>
+                                <textarea id="lazienkaPytania" name="lazienkaPytania" rows="2"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="lazienkaKomentarz">Komentarz</label>
+                                <textarea id="lazienkaKomentarz" name="lazienkaKomentarz" rows="2"></textarea>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="form-group form-row">
-                        <label for="kosztParkingu">Koszt parkingu (PLN/miesiąc)</label>
-                        <input type="number" id="kosztParkingu" name="kosztParkingu">
-                    </div>
-
-                    <div class="subsection-title">Wspólnota Mieszkaniowa</div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="liczbaWzystkichMieszkań">Liczba mieszkań w budynku</label>
-                            <input type="number" id="liczbaWzystkichMieszkań" name="liczbaWzystkichMieszkań">
-                        </div>
-                        <div class="form-group">
-                            <label for="opłataWspólnota">Opłata wspólnoty (PLN/miesiąc)</label>
-                            <input type="number" id="opłataWspólnota" name="opłataWspólnota">
-                        </div>
-                    </div>
-
-                    <div class="form-group form-row full">
-                        <label for="dodatkoweUdogodnienia">Dodatkowe udogodnienia</label>
-                        <input type="text" id="dodatkoweUdogodnienia" name="dodatkoweUdogodnienia"
-                               placeholder="np. plac zabaw, ochrona, monitoring">
-                    </div>
-                </div>
-            </div>
-
-            <!-- SEKCJA 5: OKOLICA -->
-            <div class="section collapsible">
-                <div class="section-title collapsible-header" tabindex="0" role="button" aria-expanded="true">
-                    Okolica Mieszkania
-                    <span class="collapse-arrow" style="margin-left:auto;">▼</span>
-                </div>
-                <div class="collapsible-content">
-                    <div class="subsection-title">Transport</div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="distPrzystanekAuto">Odległość do przystanku autobusowego (m)</label>
-                            <input type="number" id="distPrzystanekAuto" name="distPrzystanekAuto">
-                        </div>
-                        <div class="form-group">
-                            <label for="distMetro">Odległość do metra (m)</label>
-                            <input type="number" id="distMetro" name="distMetro">
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="czas dojazdu Maciej auto">(Maciej) Czas dojazdu do pracy (min)</label>
-                            <input type="number" id="czas dojazdu Maciej auto" name="czas dojazdu Maciej auto">
-                        </div>
-                        <div class="form-group">
-                            <label for="czas dojazdu Maja auto">(Maja) Czas dojazdu do pracy (min)</label>
-                            <input type="number" id="czas dojazdu Maja auto" name="czas dojazdu Maja auto">
-                        </div>
-                    </div>
-
-                    <div class="subsection-title">Infrastruktura Handlowa</div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="distSupermarket">Odległość do supermarketu (m)</label>
-                            <input type="number" id="distSupermarket" name="distSupermarket">
-                        </div>
-                        <div class="form-group">
-                            <label for="distApteka">Odległość do apteki (m)</label>
-                            <input type="number" id="distApteka" name="distApteka">
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="distPark">Odległość do parku (m)</label>
-                            <input type="number" id="distPark" name="distPark">
-                        </div>
-                        <div class="form-group">
-                            <label for="distSzkoła">Odległość do szkoły (m)</label>
-                            <input type="number" id="distSzkoła" name="distSzkoła">
-                        </div>
-                    </div>
-
-                    <div class="subsection-title">Bezpieczeństwo i Hałas</div>
-
-                    <div class="form-group form-row full">
-                        <label for="bezpieczeństwo">Wrażenie o bezpieczeństwie okolicy</label>
-                        <select id="bezpieczeństwo" name="bezpieczeństwo">
-                            <option value="">Wybierz...</option>
-                            <option value="Bardzo bezpieczna">Bardzo bezpieczna</option>
-                            <option value="Bezpieczna">Bezpieczna</option>
-                            <option value="Średnio bezpieczna">Średnio bezpieczna</option>
-                            <option value="Niebezpieczna">Niebezpieczna</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group form-row full">
-                        <label for="hałasSzczegół">Hałas z ulicy</label>
-                        <select id="hałasSzczegół" name="hałasSzczegół">
-                            <option value="">Wybierz...</option>
-                            <option value="Żaden">Żaden</option>
-                            <option value="Nieznaczny">Nieznaczny</option>
-                            <option value="Widoczny">Widoczny</option>
-                            <option value="Znaczny">Znaczny</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group form-row full">
-                        <label for="zapachy">Zapachy niebezpieczne/nieprzyjemne</label>
-                        <select id="zapachy" name="zapachy">
-                            <option value="">Wybierz...</option>
-                            <option value="Brak">Brak</option>
-                            <option value="Tak">Tak</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SEKCJA 6: OCENA FINALNA -->
-            <div class="section collapsible">
-                <div class="section-title collapsible-header" tabindex="0" role="button" aria-expanded="true">
-                    Ocena i Wnioski
-                    <span class="collapse-arrow" style="margin-left:auto;">▼</span>
-                </div>
-                <div class="collapsible-content">
-                    <div class="subsection-title">Oceny Mieszkania (1-5)</div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Stan ogólny mieszkania</label>
-                            <div class="rating-group">
-                                <button type="button" class="rating-btn" data-field="ocenaStan" data-value="1">1
-                                </button>
-                                <button type="button" class="rating-btn" data-field="ocenaStan" data-value="2">2
-                                </button>
-                                <button type="button" class="rating-btn" data-field="ocenaStan" data-value="3">3
-                                </button>
-                                <button type="button" class="rating-btn" data-field="ocenaStan" data-value="4">4
-                                </button>
-                                <button type="button" class="rating-btn" data-field="ocenaStan" data-value="5">5
-                                </button>
-                            </div>
-                            <input type="hidden" id="ocenaStan" name="ocenaStan">
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Metraż i rozkład pomieszczeń</label>
-                            <div class="rating-group">
-                                <button type="button" class="rating-btn" data-field="ocenaMetraż" data-value="1">1
-                                </button>
-                                <button type="button" class="rating-btn" data-field="ocenaMetraż" data-value="2">2
-                                </button>
-                                <button type="button" class="rating-btn" data-field="ocenaMetraż" data-value="3">3
-                                </button>
-                                <button type="button" class="rating-btn" data-field="ocenaMetraż" data-value="4">4
-                                </button>
-                                <button type="button" class="rating-btn" data-field="ocenaMetraż" data-value="5">5
-                                </button>
-                            </div>
-                            <input type="hidden" id="ocenaMetraż" name="ocenaMetraż">
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Oświetlenie naturalne</label>
-                            <div class="rating-group">
-                                <button type="button" class="rating-btn" data-field="ocenaOświetlenie" data-value="1">
-                                    1
-                                </button>
-                                <button type="button" class="rating-btn" data-field="ocenaOświetlenie" data-value="2">
-                                    2
-                                </button>
-                                <button type="button" class="rating-btn" data-field="ocenaOświetlenie" data-value="3">
-                                    3
-                                </button>
-                                <button type="button" class="rating-btn" data-field="ocenaOświetlenie" data-value="4">
-                                    4
-                                </button>
-                                <button type="button" class="rating-btn" data-field="ocenaOświetlenie" data-value="5">
-                                    5
-                                </button>
-                            </div>
-                            <input type="hidden" id="ocenaOświetlenie" name="ocenaOświetlenie">
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Transport publiczny</label>
-                            <div class="rating-group">
-                                <button type="button" class="rating-btn" data-field="ocenaTransport" data-value="1">1
-                                </button>
-                                <button type="button" class="rating-btn" data-field="ocenaTransport" data-value="2">2
-                                </button>
-                                <button type="button" class="rating-btn" data-field="ocenaTransport" data-value="3">3
-                                </button>
-                                <button type="button" class="rating-btn" data-field="ocenaTransport" data-value="4">4
-                                </button>
-                                <button type="button" class="rating-btn" data-field="ocenaTransport" data-value="5">5
-                                </button>
-                            </div>
-                            <input type="hidden" id="ocenaTransport" name="ocenaTransport">
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Bezpieczeństwo okolicy</label>
-                            <div class="rating-group">
-                                <button type="button" class="rating-btn" data-field="ocenaBezpieczeństwo"
-                                        data-value="1">1
-                                </button>
-                                <button type="button" class="rating-btn" data-field="ocenaBezpieczeństwo"
-                                        data-value="2">2
-                                </button>
-                                <button type="button" class="rating-btn" data-field="ocenaBezpieczeństwo"
-                                        data-value="3">3
-                                </button>
-                                <button type="button" class="rating-btn" data-field="ocenaBezpieczeństwo"
-                                        data-value="4">4
-                                </button>
-                                <button type="button" class="rating-btn" data-field="ocenaBezpieczeństwo"
-                                        data-value="5">5
-                                </button>
-                            </div>
-                            <input type="hidden" id="ocenaBezpieczeństwo" name="ocenaBezpieczeństwo">
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>OCENA FINAŁOWA</label>
-                            <div class="rating-group">
-                                <button type="button" class="rating-btn" data-field="ocenaFinałowa" data-value="1">1
-                                </button>
-                                <button type="button" class="rating-btn" data-field="ocenaFinałowa" data-value="2">2
-                                </button>
-                                <button type="button" class="rating-btn" data-field="ocenaFinałowa" data-value="3">3
-                                </button>
-                                <button type="button" class="rating-btn" data-field="ocenaFinałowa" data-value="4">4
-                                </button>
-                                <button type="button" class="rating-btn" data-field="ocenaFinałowa" data-value="5">5
-                                </button>
-                            </div>
-                            <input type="hidden" id="ocenaFinałowa" name="ocenaFinałowa">
-                        </div>
-                    </div>
-
-                    <div class="subsection-title">Plusy i Minusy</div>
-
-                    <div class="form-group form-row full">
-                        <label for="plusy">Plusy tego mieszkania</label>
-                        <textarea id="plusy" name="plusy" placeholder="Wpisz plusy, każdy w nowej linii"></textarea>
-                    </div>
-
-                    <div class="form-group form-row full">
-                        <label for="minusy">Minusy tego mieszkania</label>
-                        <textarea id="minusy" name="minusy" placeholder="Wpisz minusy, każdy w nowej linii"></textarea>
-                    </div>
-
-                    <div class="form-group form-row full">
-                        <label for="pytania">Kwestie do wyjaśnienia</label>
-                        <textarea id="pytania" name="pytania" placeholder="Wpisz pytania do sprzedającego"></textarea>
-                    </div>
-
-                    <div class="form-group form-row full">
-                        <label for="uwagi">Uwagi ogólne</label>
-                        <textarea id="uwagi" name="uwagi"
-                                  placeholder="Wpisz swoje ogólne wrażenia i obserwacje"></textarea>
-                    </div>
-
-                    <div class="form-group form-row full">
-                        <label for="decyzja">Czy to mieszkanie warte bliżej przeanalizować?</label>
-                        <select id="decyzja" name="decyzja">
-                            <option value="">Wybierz...</option>
-                            <option value="TAK - godne bliżej przeanalizować">TAK - godne bliżej przeanalizować, możliwy
-                                zakup
-                            </option>
-                            <option value="MOŻLIWE - wymaga zastanowienia">MOŻLIWE - ma szanse, ale wymaga zastanowienia
-                                lub dodatkowych informacji
-                            </option>
-                            <option value="NIE - nie spełnia oczekiwań">NIE - nie spełnia oczekiwań, dalsze
-                                zainteresowanie zbędne
-                            </option>
-                        </select>
                     </div>
                 </div>
             </div>
@@ -938,19 +580,12 @@
 
 <footer style="background: #f5f5f5; color: #333; padding: 24px 0; text-align: center; font-size: 15px; border-top: 1px solid #e0e0e0; margin-top: 32px;">
     <div style="margin-bottom: 8px;">
-        Maja Sciubis
-        //
-        <a href="todo">Email</a>
-        //
-        <a href="todo">LinkedIn</a>
-    </div>
-    <div style="margin-bottom: 8px;">
-        Maciej Umański
-        //
-        <a href="mailto:maciej@umanski.net">Email</a>
-        //
-        <a href="https://github.com/maciej-umanski">GitHub</a>
-        //
+        2026 | Maja Sciubis:
+        <a href="mailto:m.sciubis@gmail.com">Email</a>,
+        <a href="https://www.linkedin.com/in/msciubis/">LinkedIn</a>
+        | Maciej Umański:
+        <a href="mailto:maciej@umanski.net">Email</a>,
+        <a href="https://github.com/maciej-umanski">GitHub</a>,
         <a href="https://www.linkedin.com/in/maciej-umanski/">LinkedIn</a>
     </div>
 </footer>

@@ -133,6 +133,28 @@ textarea {
     transition: border-color 0.2s, box-shadow 0.2s;
 }
 
+input[type="tel"],
+input[type="email"] {
+    width: 100%;
+    padding: 10px 12px 10px 38px;
+    border: 1.5px solid var(--color-primary);
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-family: inherit;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    background-size: 18px 18px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="tel"] {
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%232180cd" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C10.07 22 2 13.93 2 4.5A1 1 0 013 3.5H6.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>');
+}
+
+input[type="email"] {
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%232180cd" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 2v.01L12 13 4 6.01V6h16zm0 12H4V8.99l8 6.99 8-6.99V18z"/></svg>');
+}
+
 input[type="text"]:focus,
 input[type="number"]:focus,
 input[type="date"]:focus,
@@ -141,6 +163,12 @@ textarea:focus {
     outline: none;
     border-color: var(--color-primary);
     box-shadow: 0 0 0 3px rgba(33, 128, 205, 0.1);
+}
+
+input[type="tel"]:focus,
+input[type="email"]:focus {
+    border-color: #1a6aad;
+    box-shadow: 0 0 0 3px rgba(33, 128, 205, 0.13);
 }
 
 textarea {
